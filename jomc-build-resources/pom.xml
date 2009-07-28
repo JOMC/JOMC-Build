@@ -36,14 +36,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
-    <artifactId>jomc-parent</artifactId>
-    <groupId>org.jomc</groupId>
+    <artifactId>jomc-build</artifactId>
+    <groupId>org.jomc.build</groupId>
     <version>1.0-alpha-1-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>jomc-resources</artifactId>
-  <name>JOMC Resources</name>
-  <description>Object management and configuration artifact resources.</description>
+  <artifactId>jomc-build-resources</artifactId>
+  <name>JOMC Build Resources</name>
+  <description>Object management and configuration build resources.</description>
   <build>
     <resources>
       <resource>
