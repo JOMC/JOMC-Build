@@ -149,7 +149,7 @@
             <preparationGoals>clean install</preparationGoals>
             <tagBase>https://jomc.svn.sourceforge.net/svnroot/jomc/jomc-build/tags</tagBase>
             <useReleaseProfile>false</useReleaseProfile>
-            <releaseProfiles>release</releaseProfiles>
+            <releaseProfiles>jomc-release</releaseProfiles>
           </configuration>
         </plugin>
         <plugin>
@@ -174,9 +174,9 @@
           <version>1.0-alpha-4</version>
         </plugin>
         <plugin>
-          <groupId>net.sourceforge.mjarsigner</groupId>
-          <artifactId>jarsigner-maven-plugin</artifactId>
-          <version>1.0-beta-3</version>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jarsigner-plugin</artifactId>
+          <version>1.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -444,40 +444,13 @@
   </reporting>
   <dependencyManagement>
     <dependencies>
-
-      <!-- JOMC Build -->
       <dependency>
         <groupId>org.jomc.build</groupId>
         <artifactId>jomc-build-resources</artifactId>
         <version>1.0-alpha-1-SNAPSHOT</version>
       </dependency>
-
     </dependencies>
   </dependencyManagement>
-  <repositories>
-    <repository>
-      <id>http://mjarsigner.sourceforge.net/maven2/releases</id>
-      <url>http://mjarsigner.sourceforge.net/maven2/releases</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>http://mjarsigner.sourceforge.net/maven2/releases</id>
-      <url>http://mjarsigner.sourceforge.net/maven2/releases</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
   <distributionManagement>
     <repository>
       <id>http://jomc.sourceforge.net/maven2/releases</id>
@@ -492,7 +465,7 @@
   </distributionManagement>
   <profiles>
     <profile>
-      <id>release</id>
+      <id>jomc-release</id>
       <activation>
         <activeByDefault>false</activeByDefault>
       </activation>
@@ -530,8 +503,8 @@
             </executions>
           </plugin>
           <plugin>
-            <groupId>net.sourceforge.mjarsigner</groupId>
-            <artifactId>jarsigner-maven-plugin</artifactId>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jarsigner-plugin</artifactId>
             <executions>
               <execution>
                 <id>sign</id>
