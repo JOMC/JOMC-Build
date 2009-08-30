@@ -453,13 +453,13 @@
   </dependencyManagement>
   <distributionManagement>
     <repository>
-      <id>http://jomc.sourceforge.net/maven2/releases</id>
-      <name>JOMC Release Repository</name>
+      <id>repository.jomc.org</id>
+      <name>JOMC Maven 2 Repository</name>
       <url>scp://shell.sourceforge.net/home/groups/j/jo/jomc/htdocs/maven2/releases</url>
     </repository>
     <snapshotRepository>
-      <id>http://jomc.sourceforge.net/maven2/snapshots</id>
-      <name>JOMC Snapshot Repository</name>
+      <id>snapshots.jomc.org</id>
+      <name>JOMC Maven 2 Snapshot Repository</name>
       <url>scp://shell.sourceforge.net/home/groups/j/jo/jomc/htdocs/maven2/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
