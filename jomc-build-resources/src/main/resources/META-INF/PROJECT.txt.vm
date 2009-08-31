@@ -143,6 +143,11 @@
 #else
     License ............ : Not available.
 #end
+#if($dependency.description)
+    Description ........ : $dependency.description
+#else
+    Description ........ : Not available.
+#end
 #end
 #end
 #end
