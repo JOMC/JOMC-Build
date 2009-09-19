@@ -50,6 +50,7 @@
       <item name="Project Summary" href="http://sourceforge.net/projects/jomc/"/>
       <item name="Downloads" href="http://sourceforge.net/project/showfiles.php?group_id=257507"/>
     </menu>
+    <menu ref="parent" />
     <menu ref="modules" />
     <menu ref="reports" />
   </body>
