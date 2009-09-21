@@ -38,7 +38,7 @@
          name="JOMC Build">
   <skin>
     <groupId>org.apache.maven.skins</groupId>
-    <artifactId>maven-default-skin</artifactId>
+    <artifactId>maven-classic-skin</artifactId>
     <version>1.0</version>
   </skin>
   <body>
