@@ -431,11 +431,13 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-changes-plugin</artifactId>
+        <inherited>false</inherited>
         <version>2.1</version>
         <configuration>
           <issueLinkTemplatePerSystem>
             <MantisBT>http://apps.sourceforge.net/mantisbt/jomc/view.php?id=%ISSUE%</MantisBT>
           </issueLinkTemplatePerSystem>
+          <xmlPath>src/main/changes/changes.xml</xmlPath>
           <reportSets>
             <reportSet>
               <reports>
