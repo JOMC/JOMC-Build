@@ -70,7 +70,7 @@
   Issue management
 
     System ............. : $project.issueManagement.system
-    Location ........... : $project.issueManagement.url
+    URL ................ : $project.issueManagement.url
 #end
 #if(!$project.mailingLists.isEmpty)
 
@@ -105,7 +105,7 @@
     Developer access ... : ${project.scm.developerConnection}
 #end
 #if($project.scm.url)
-    SCM URL ............ : ${project.scm.url}
+    URL ................ : ${project.scm.url}
 #end
 #end
 #if($projectsSortedByOrganization && !$projectsSortedByOrganization.isEmpty())

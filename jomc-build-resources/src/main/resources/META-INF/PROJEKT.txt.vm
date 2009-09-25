@@ -1,0 +1,153 @@
+
+#if($project.getOrganization())
+  $project.getOrganization().getName() - ${project.name} - PROJEKT.txt
+#else
+  ${project.name} - PROJEKT.txt
+#end
+  Version ${project.version} Build ${buildNumber}
+#if($project.url)
+  ${project.url}
+#end
+#if($project.description)
+
+  ${project.description}
+#end
+#if($project.developers && !$project.developers.empty)
+
+  Entwickler
+#foreach($developer in $project.developers)
+
+#if($developer.id)
+    Bezeichner ............. : $developer.id
+#end
+#if($developer.name)
+    Name ................... : $developer.name
+#end
+#if($developer.email)
+    E-Mail ................. : $developer.email
+#end
+#if($developer.url)
+    URL .................... : $developer.url
+#end
+#if($developer.organization)
+    Organisation ........... : $developer.organization
+#end
+#if($developer.organizationUrl)
+    URL der Organisation ... : $developer.organizationUrl
+#end
+#if($developer.timezone)
+    Zeitzone ............... : $developer.timezone
+#end
+#end
+#end
+#if($project.contributors && !$project.contributors.empty)
+
+  Beitragsleistende
+#foreach($contributor in $project.contributors)
+
+#if($contributor.name)
+    Name ................... : $contributor.name
+#end
+#if($contributor.email)
+    E-Mail ................. : $contributor.email
+#end
+#if($contributor.url)
+    URL .................... : $contributor.url
+#end
+#if($contributor.organization)
+    Organisation ........... : $contributor.organization
+#end
+#if($contributor.organizationUrl)
+    URL der Organisation ... : $contributor.organizationUrl
+#end
+#if($contributor.timezone)
+    Zeitzone ............... : $contributor.timezone
+#end
+#end
+#end
+#if($project.issueManagement && $project.issueManagement.url)
+
+  Problemverwaltung
+
+    System ............. : $project.issueManagement.system
+    URL ................ : $project.issueManagement.url
+#end
+#if(!$project.mailingLists.isEmpty)
+
+  E-Mail-Listen
+#foreach($list in $project.mailingLists)
+
+#if($list.name)
+    Name ................ : $list.name
+#end
+#if($list.subscribe)
+    Eintragung .......... : $list.subscribe
+#end
+#if($list.unsubscribe)
+    Austragung .......... : $list.unsubscribe
+#end
+#if($list.post)
+    Adresse ............. : $list.post
+#end
+#if($list.archive)
+    Archiv .............. : $list.archive
+#end
+#end
+#end
+#if($project.scm)
+
+  Quelltextverwaltung
+
+#if($project.scm.connection)
+    Verbindung .................. : ${project.scm.connection}
+#end
+#if($project.scm.developerConnection)
+    Verbindung für Entwickler ... : ${project.scm.developerConnection}
+#end
+#if($project.scm.url)
+    SCM URL ..................... : ${project.scm.url}
+#end
+#end
+#if($projectsSortedByOrganization && !$projectsSortedByOrganization.isEmpty())
+
+  Abhängigkeiten
+#foreach ( $organization in $projectsSortedByOrganization.keySet() )
+#foreach ( $dependency in $projectsSortedByOrganization.get( $organization ) )
+
+    Name ................... : $dependency.name
+    Artefakt ............... : $dependency.artifact
+#if($dependency.url)
+    URL .................... : $dependency.url
+#else
+    URL .................,,, : Nicht verfügbar.
+#end
+#if(!$organization.getName().equals("an unknown organization"))
+    Organisation ........... : $organization.name
+#else
+    Organisation ........... : Nicht verfügbar.
+#end
+#if($organization.url)
+    URL der Organisation ... : $organization.url
+#else
+    URL der Organisation ... : Nicht verfügbar.
+#end
+#if($dependency.licenses && !$dependency.licenses.empty)
+#foreach($license in $dependency.licenses)
+    Lizenz ................. : $license.name
+#if($license.url)
+    URL der Lizenz ......... : $license.url
+#else
+    URL der Lizenz ......... : Nicht verfügbar.
+#end
+#end
+#else
+    Lizenz ................. : Nicht verfügbar.
+#end
+#if($dependency.description)
+    Beschreibung ........... : $dependency.description
+#else
+    Beschreibung ........... : Nicht verfügbar.
+#end
+#end
+#end
+#end
