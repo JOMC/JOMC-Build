@@ -40,10 +40,9 @@
     <author email="cs@jomc.org">Christian Schulte</author>
   </properties>
   <body>
-    <!-- ******************************************************************* -->
-    <release version="1.0" date="2009-08-31" description="Initial release.">
+    <!-- *********************************************************************************************************** -->
+    <release version="1.0" date="2009-08-31">
       <action dev="schulte2005" type="update"><![CDATA[<pre><code>
-
       ...
       &lt;plugin>
         &lt;groupId>org.apache.maven.plugins&lt;/groupId>
@@ -69,9 +68,8 @@
       ...</code></pre>]]>
       </action>
     </release>
-
-    <!-- ******************************************************************* -->
-    <release version="1.1" date="2009-09-21" description="Feature enhancements.">
+    <!-- *********************************************************************************************************** -->
+    <release version="1.1" date="2009-09-21">
       <action dev="schulte2005" type="update"><![CDATA[
       Added a checkstyle configuration to the <code>jomc-build-resources</code>
       artifact.<pre><code>
@@ -96,9 +94,8 @@
         ...</code></pre>]]>
       </action>
     </release>
-
-    <!-- ******************************************************************* -->
-    <release version="1.2" date="2009-09-26" description="Localization updates.">
+    <!-- *********************************************************************************************************** -->
+    <release version="1.2" date="2009-09-26">
       <action dev="schulte2005" type="update"><![CDATA[
       Added <code>LIZENZ.txt.vm</code> and <code>PROJEKT.txt.vm</code> resources
       to the <code>jomc-build-resources</code> artifact.
@@ -108,6 +105,11 @@
       <a href="http://jira.codehaus.org/browse/MRRESOURCES-36">MRRESOURCES-36</a>.</p>]]>
       </action>
     </release>
-
+    <!-- *********************************************************************************************************** -->
+    <release version="1.3" date="2009-12-16">
+      <action dev="schulte2005" type="add"><![CDATA[
+      Added <code>changes-report-1.0.0.xslt</code> resource to the <code>jomc-build-resources</code> artifact.]]>
+      </action>
+    </release>
   </body>
 </document>

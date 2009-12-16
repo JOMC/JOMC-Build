@@ -132,7 +132,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>buildnumber-maven-plugin</artifactId>
-          <version>1.0-beta-3</version>
+          <version>1.0-beta-4</version>
           <executions>
             <execution>
               <id>create-buildnumber</id>
@@ -166,7 +166,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>2.2</version>
+          <version>2.3</version>
           <configuration>
             <archive>
               <index>true</index>
@@ -254,7 +254,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
-          <version>1.2.1</version>
+          <version>1.2.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -300,6 +300,37 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
+        <!--
+
+        Selectively inheriting executions not working. See http://jira.codehaus.org/browse/MNG-3959
+        Workaround: inherited="false" in this pom and a copy of the plugin in all child poms to stop maven from
+                    executing the "attach" execution in the child poms.
+
+        -->
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <id>attach</id>
+            <inherited>false</inherited> <!-- Ignored. MNG-3959 -->
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>src/main/changes/changes.xml</file>
+                  <type>xml</type>
+                  <classifier>changes</classifier>
+                </artifact>
+                <artifact>
+                  <file>${basedir}/LICENSE.txt</file>
+                  <type>txt</type>
+                  <classifier>license</classifier>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -349,7 +380,6 @@
               <report>aggregate</report>
             </reports>
             <configuration>
-              <aggregate>true</aggregate>
               <breakiterator>true</breakiterator>
               <keywords>true</keywords>
               <linksource>true</linksource>
@@ -394,8 +424,9 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-changes-plugin</artifactId>
+        <version>2.2</version>
+        <!-- version>2.3</version Upgrade breaks changes report due to http://jira.codehaus.org/browse/MCHANGES-190 -->
         <inherited>false</inherited>
-        <version>2.1</version>
         <configuration>
           <issueLinkTemplatePerSystem>
             <MantisBT>http://apps.sourceforge.net/mantisbt/jomc/view.php?id=%ISSUE%</MantisBT>
