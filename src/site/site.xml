@@ -44,7 +44,32 @@
     <artifactId>maven-classic-skin</artifactId>
     <version>1.0</version>
   </skin>
+  <bannerRight>
+    <name>Sourceforge.net</name>
+    <src>http://sflogo.sourceforge.net/sflogo.php?group_id=257507&amp;type=11</src>
+    <href>http://sourceforge.net/projects/jomc</href>
+  </bannerRight>
   <body>
+    <head>
+      <meta name="keywords" lang="de" content="objekt, container, java, quelltext, generator, quelltextgenerator, configuration, management"/>
+      <meta name="keywords" lang="en" content="object, container, java, source, code, sourcecode, generator, sourcecodegenerator, configuration, management"/>
+      <script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/apps/piwik/jomc/" : "http://sourceforge.net/apps/piwik/jomc/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+      </script>
+      <noscript>
+        <p>
+          <img src="http://sourceforge.net/apps/piwik/jomc/piwik.php?idsite=1" style="border:0" alt=""/>
+        </p>
+      </noscript>
+    </head>
     <menu ref="parent" />
     <menu ref="modules" />
     <menu name="Sourceforge">
@@ -52,6 +77,7 @@
       <item name="Support" href="http://sourceforge.net/projects/jomc/support/"/>
       <item name="Files" href="http://sourceforge.net/projects/jomc/files/"/>
       <item name="Issues" href="http://sourceforge.net/apps/mantisbt/jomc/"/>
+      <item name="Stats" href="http://sourceforge.net/project/stats/?group_id=257507&amp;ugn=jomc"/>
     </menu>
     <menu ref="reports" />
   </body>
