@@ -120,7 +120,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>2.4.1</version>
+          <version>2.4.2</version>
           <configuration>
             <delimiters>
               <delimiter>${*}</delimiter>
@@ -284,7 +284,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>1.4</version>
+          <version>1.5</version>
           <executions>
             <execution>
               <goals>
@@ -453,17 +453,17 @@
   </dependencyManagement>
   <distributionManagement>
     <repository>
-      <id>repository.jomc.org</id>
-      <name>JOMC Maven 2 Repository</name>
-      <url>scp://shell.sourceforge.net/home/groups/j/jo/jomc/htdocs/maven2/releases</url>
+      <id>sonatype-nexus-staging</id>
+      <name>Sonatype Nexus Release Repository</name>
+      <url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
     </repository>
     <snapshotRepository>
-      <id>snapshots.jomc.org</id>
-      <name>JOMC Maven 2 Snapshot Repository</name>
-      <url>scp://shell.sourceforge.net/home/groups/j/jo/jomc/htdocs/maven2/snapshots</url>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>http://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
     <site>
-      <id>www.jomc.org</id>
+      <id>jomc.sourceforge.net</id>
       <name>JOMC Site</name>
       <url>scp://shell.sourceforge.net/home/groups/j/jo/jomc/htdocs/jomc-build/${project.version}</url>
     </site>
