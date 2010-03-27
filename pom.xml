@@ -38,7 +38,7 @@
   <artifactId>jomc-build</artifactId>
   <packaging>pom</packaging>
   <name>JOMC Build</name>
-  <version>1.4-SNAPSHOT</version>
+  <version>1.4</version>
   <description>Object management and configuration build support.</description>
   <url>http://jomc.sourceforge.net/jomc-build/${project.version}</url>
   <prerequisites>
@@ -92,9 +92,9 @@
     </mailingList>
   </mailingLists>
   <scm>
-    <connection>scm:svn:https://jomc.svn.sourceforge.net/svnroot/jomc/jomc-build/trunk</connection>
-    <developerConnection>scm:svn:https://jomc.svn.sourceforge.net/svnroot/jomc/jomc-build/trunk</developerConnection>
-    <url>http://jomc.svn.sourceforge.net/viewvc/jomc/jomc-build/trunk/</url>
+    <connection>scm:svn:https://jomc.svn.sourceforge.net/svnroot/jomc/jomc-build/tags/jomc-build-1.4</connection>
+    <developerConnection>scm:svn:https://jomc.svn.sourceforge.net/svnroot/jomc/jomc-build/tags/jomc-build-1.4</developerConnection>
+    <url>http://jomc.svn.sourceforge.net/viewvc/jomc/jomc-build/tags/jomc-build-1.4</url>
   </scm>
   <build>
     <pluginManagement>
@@ -453,7 +453,7 @@
       <dependency>
         <groupId>org.jomc.build</groupId>
         <artifactId>jomc-build-resources</artifactId>
-        <version>1.4-SNAPSHOT</version>
+        <version>1.4</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
