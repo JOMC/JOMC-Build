@@ -111,5 +111,9 @@
       Added <code>changes-report-1.0.0.xslt</code> resource to the <code>jomc-build-resources</code> artifact.]]>
       </action>
     </release>
+    <!-- *********************************************************************************************************** -->
+    <release version="1.4" date="2010-03-27">
+      <action dev="schulte2005" type="add">Build updates.</action>
+    </release>
   </body>
 </document>

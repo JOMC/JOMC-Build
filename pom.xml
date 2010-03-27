@@ -187,6 +187,12 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jarsigner-plugin</artifactId>
           <version>1.2</version>
+          <configuration>
+            <arguments>
+              <argument>-tsa</argument>
+              <argument>http://time.certum.pl/</argument>
+            </arguments>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -253,7 +259,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
-          <version>1.3.1</version>
+          <version>1.3.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
