@@ -41,9 +41,6 @@
   <version>1.5-SNAPSHOT</version>
   <description>Object management and configuration build support.</description>
   <url>http://jomc.sourceforge.net/jomc-build/${project.version}</url>
-  <prerequisites>
-    <maven>2.2.1</maven>
-  </prerequisites>
   <inceptionYear>2005</inceptionYear>
   <organization>
     <name>The JOMC Project</name>
