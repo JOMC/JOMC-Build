@@ -60,6 +60,7 @@
           tr.changelogRowDeletion { background-color: #FFCCCC; font-family: Verdana; font-size: small; padding: 2px 5px 2px 5px; }
           tr.changelogRowFix { background-color: #FFCCCC; font-family: Verdana; font-size: small; padding: 2px 5px 2px 5px; }
           tr.changelogRowUpdate { background-color: #FFFF99; font-family: Verdana; font-size: small; padding: 2px 5px 2px 5px; }
+          tr.changelogRowNoChanges { background-color: #CCFFCC; font-family: Verdana; font-size: small; padding: 2px 5px 2px 5px; }
           td.changelogCell { vertical-align: top; text-align: left; font-family: Verdana; font-size: small; padding: 2px 5px 2px 5px; }
           td.changelogCellAddition { vertical-align: top; text-align: left; font-family: Verdana; font-size: small; padding: 2px 5px 2px 5px; }
           td.changelogCellDeletion { vertical-align: top; text-align: left; font-family: Verdana; font-size: small; padding: 2px 5px 2px 5px; }
@@ -90,6 +91,13 @@
       <xsl:with-param name="date"><xsl:value-of select="@date"/></xsl:with-param>
       <xsl:sort select="@type"/>
     </xsl:apply-templates>
+    <xsl:if test="count(changes:action) = 0">
+      <tr class="changelogRowNoChanges">
+        <td class="changelogCellAddition"><xsl:value-of select="@version"/></td>
+        <td class="changelogCellAddition"><xsl:value-of select="@date"/></td>
+        <td class="changelogCellAddition" colspan="3">No changes in this release.</td>
+      </tr>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="changes:action">

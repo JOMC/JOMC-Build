@@ -115,5 +115,12 @@
     <release version="1.4" date="2010-03-27">
       <action dev="schulte2005" type="add">Build updates.</action>
     </release>
+    <!-- *********************************************************************************************************** -->
+    <release version="1.5" date="2010-07-11">
+      <action dev="schulte2005" type="update"><![CDATA[Updated the <code>changes-report-1.0.0.xslt</code> document of
+      the <code>jomc-build-resources</code> artifact to support releases without any actions by adding a table row
+      containing the text <code>No changes in this release.</code>.]]>
+      </action>
+    </release>
   </body>
 </document>
