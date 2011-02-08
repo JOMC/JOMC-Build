@@ -457,6 +457,7 @@
     <module>jdk15-jaxb21-signature</module>
     <module>jdk15-jaxb22-signature</module>
     <module>jdk15-jpa10-signature</module>
+    <module>jdk15-jta11-signature</module>
   </modules>
   <reporting>
     <plugins>
