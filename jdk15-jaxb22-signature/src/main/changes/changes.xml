@@ -41,6 +41,6 @@
   </properties>
   <body>
     <!-- *********************************************************************************************************** -->
-    <release version="1.6" description="Initial release."/>
+    <release version="1.6" description="Initial release." date="2011-02-08"/>
   </body>
 </document>

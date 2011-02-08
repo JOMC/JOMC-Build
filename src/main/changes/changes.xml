@@ -41,7 +41,7 @@
   </properties>
   <body>
     <!-- *********************************************************************************************************** -->
-    <release version="1.6">
+    <release version="1.6" date="2011-02-08">
       <action dev="schulte2005" type="update">Split parent changes document to a single document per artifact.</action>
       <action dev="schulte2005" type="update"><![CDATA[POM updates:<ul>
       <li>Added the <code>maven-enforcer-plugin</code> for enforcing the Maven version.</li>
