@@ -124,5 +124,12 @@
     </release>
     <!-- *********************************************************************************************************** -->
     <release version="1.6" date="2011-02-08"/>
+    <!-- *********************************************************************************************************** -->
+    <release version="1.7">
+      <action dev="schulte2005" type="fix"><![CDATA[Updated the <code>PROJECT.txt.vm</code> and
+      <code>PROJEKT.txt.vm</code> resources to support licenses without name suppressing corresponding build
+      warnings.]]>
+      </action>
+    </release>
   </body>
 </document>
