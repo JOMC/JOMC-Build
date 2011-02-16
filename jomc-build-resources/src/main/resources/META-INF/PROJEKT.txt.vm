@@ -134,9 +134,9 @@
 #if($dependency.licenses && !$dependency.licenses.empty)
 #foreach($license in $dependency.licenses)
 #if($license.name)
-    Lizenz ................. : Nicht verfügbar.
-#else
     Lizenz ................. : $license.name
+#else
+    Lizenz ................. : Nicht verfügbar.
 #end
 #if($license.url)
     URL der Lizenz ......... : $license.url
