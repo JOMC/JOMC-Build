@@ -138,10 +138,13 @@
 #else
     License ............ : Not available.
 #end
-#if($license.url)
+#if($license.url && ( $license.url.toLowerCase().startsWith("http") || $license.url.toLowerCase().startsWith("ftp") ) )
     License URL ........ : $license.url
 #else
     License URL ........ : Not available.
+#end
+#if($license.comments)
+    License comments ... : $license.comments
 #end
 #end
 #else

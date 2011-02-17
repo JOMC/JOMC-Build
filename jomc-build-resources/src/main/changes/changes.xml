@@ -126,9 +126,16 @@
     <release version="1.6" date="2011-02-08"/>
     <!-- *********************************************************************************************************** -->
     <release version="1.7">
+      <action dev="schulte2005" type="add"><![CDATA[Added license comments to the <code>PROJECT.txt.vm</code> and
+      <code>PROJEKT.txt.vm</code> resources.]]>
+      </action>
       <action dev="schulte2005" type="fix"><![CDATA[Updated the <code>PROJECT.txt.vm</code> and
       <code>PROJEKT.txt.vm</code> resources to support licenses without name suppressing corresponding build
       warnings.]]>
+      </action>
+      <action dev="schulte2005" type="update"><![CDATA[Updated the <code>PROJECT.txt.vm</code> and
+      <code>PROJEKT.txt.vm</code> resources to only use license URLs for with protocols <code>http</code> and
+      <code>ftp</code>.]]>
       </action>
     </release>
   </body>
