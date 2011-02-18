@@ -1,10 +1,10 @@
 
 #if($project.getOrganization())
-    Copyright (c) ${projectTimespan} $project.getOrganization().getName()
+    Copyright (C) ${projectTimespan} $project.getOrganization().getName()
 #end
 #if($project.getDevelopers() && !$project.getDevelopers().isEmpty())
 #foreach($developer in $project.getDevelopers())
-    Copyright (c) ${projectTimespan} $developer.getName()#if($developer.getEmail()) <$developer.getEmail()>#end
+    Copyright (C) ${projectTimespan} $developer.getName()#if($developer.getEmail()) <$developer.getEmail()>#end
 
 #end
 #end
