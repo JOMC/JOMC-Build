@@ -701,6 +701,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven-changes-plugin.version>2.4</maven-changes-plugin.version>
-    <surefire.version>2.7.2</surefire.version>
+    <surefire.version>2.8</surefire.version>
   </properties>
 </project>
