@@ -137,9 +137,10 @@
             <username>${jomc.scm.username}</username>
             <password>${jomc.scm.password}</password>
             <preparationGoals>clean install</preparationGoals>
-            <tagBase>https://jomc.svn.sourceforge.net/svnroot/jomc/jomc-build/tags</tagBase>
             <useReleaseProfile>false</useReleaseProfile>
             <releaseProfiles>jomc-release</releaseProfiles>
+            <remoteTagging>false</remoteTagging>
+            <suppressCommitBeforeTag>true</suppressCommitBeforeTag>
           </configuration>
         </plugin>
         <plugin>
