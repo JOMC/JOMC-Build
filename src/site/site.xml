@@ -73,12 +73,12 @@ piwikTracker.enableLinkTracking();
     <menu ref="parent" inherit="top" inheritAsRef="false"/>
     <menu ref="modules" inherit="top" inheritAsRef="false"/>
     <menu name="Sourceforge" inherit="bottom" inheritAsRef="false">
-      <item name="Home" href="http://jomc.sourceforge.net/"/>
-      <item name="Project Summary" href="http://sourceforge.net/projects/jomc/"/>
-      <item name="Support" href="http://sourceforge.net/projects/jomc/support/"/>
-      <item name="Files" href="http://sourceforge.net/projects/jomc/files/"/>
-      <item name="Issues" href="http://sourceforge.net/apps/mantisbt/jomc/"/>
-      <item name="Stats" href="http://sourceforge.net/project/stats/?group_id=257507&amp;ugn=jomc"/>
+      <item name="Home" href="http://jomc.sourceforge.net/project/home"/>
+      <item name="Files" href="http://jomc.sourceforge.net/project/files"/>
+      <item name="Issues" href="http://jomc.sourceforge.net/project/issues"/>
+      <item name="Summary" href="http://jomc.sourceforge.net/project/summary"/>
+      <item name="Support" href="http://jomc.sourceforge.net/project/support"/>
+      <item name="Statistics" href="http://jomc.sourceforge.net/project/statistics"/>
     </menu>
     <menu ref="reports" inherit="bottom" inheritAsRef="false"/>
   </body>
