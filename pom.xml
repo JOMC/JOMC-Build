@@ -69,24 +69,24 @@
   <mailingLists>
     <mailingList>
       <name>jomc-users</name>
-      <subscribe>http://lists.sourceforge.net/lists/listinfo/jomc-users</subscribe>
-      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/jomc-users</unsubscribe>
+      <subscribe>http://jomc.sourceforge.net/project/listinfo?jomc-users</subscribe>
+      <unsubscribe>http://jomc.sourceforge.net/project/listinfo?jomc-users</unsubscribe>
       <post>jomc-users@lists.sourceforge.net</post>
-      <archive>http://sourceforge.net/mailarchive/forum.php?forum=jomc-users</archive>
+      <archive>http://jomc.sourceforge.net/project/listarchive?jomc-users</archive>
     </mailingList>
     <mailingList>
       <name>jomc-svn</name>
-      <subscribe>http://lists.sourceforge.net/lists/listinfo/jomc-svn</subscribe>
-      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/jomc-svn</unsubscribe>
+      <subscribe>http://jomc.sourceforge.net/project/listinfo?jomc-svn</subscribe>
+      <unsubscribe>http://jomc.sourceforge.net/project/listinfo?jomc-svn</unsubscribe>
       <post>jomc-svn@lists.sourceforge.net</post>
-      <archive>http://sourceforge.net/mailarchive/forum.php?forum=jomc-svn</archive>
+      <archive>http://jomc.sourceforge.net/project/listarchive?jomc-svn</archive>
     </mailingList>
     <mailingList>
       <name>jomc-notifications</name>
-      <subscribe>http://lists.sourceforge.net/lists/listinfo/jomc-notifications</subscribe>
-      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/jomc-notifications</unsubscribe>
+      <subscribe>http://jomc.sourceforge.net/project/listinfo?jomc-notifications</subscribe>
+      <unsubscribe>http://jomc.sourceforge.net/project/listinfo?jomc-notifications</unsubscribe>
       <post>jomc-notifications@lists.sourceforge.net</post>
-      <archive>http://sourceforge.net/mailarchive/forum.php?forum=jomc-notifications</archive>
+      <archive>http://jomc.sourceforge.net/project/listarchive?jomc-notifications</archive>
     </mailingList>
   </mailingLists>
   <scm>
