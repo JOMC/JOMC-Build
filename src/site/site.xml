@@ -70,18 +70,16 @@ piwikTracker.enableLinkTracking();
         </p>
       </noscript>
     </head>
-    <menu name="Main" inherit="top" inheritAsRef="false">
+    <menu name="Sourceforge" inherit="top" inheritAsRef="false">
       <item name="Home" href="http://jomc.sourceforge.net/project/home"/>
-    </menu>
-    <menu ref="parent" inherit="top" inheritAsRef="false"/>
-    <menu ref="modules" inherit="top" inheritAsRef="false"/>
-    <menu name="Sourceforge" inherit="bottom" inheritAsRef="false">
       <item name="Files" href="http://jomc.sourceforge.net/project/files"/>
       <item name="Issues" href="http://jomc.sourceforge.net/project/issues"/>
       <item name="Summary" href="http://jomc.sourceforge.net/project/summary"/>
       <item name="Support" href="http://jomc.sourceforge.net/project/support"/>
       <item name="Statistics" href="http://jomc.sourceforge.net/project/statistics"/>
     </menu>
+    <menu ref="parent" inherit="top" inheritAsRef="false"/>
+    <menu ref="modules" inherit="top" inheritAsRef="false"/>
     <menu ref="reports" inherit="bottom" inheritAsRef="false"/>
   </body>
 </project>
