@@ -56,6 +56,7 @@
       <li>Updated the <code>maven-plugin-plugin</code> from <code>2.6</code> to <code>2.7</code>.</li>
       <li>Updated the <code>maven-remote-resources-plugin</code> from <code>1.1</code> to <code>1.2</code>.</li>
       <li>Updated the <code>maven-resources-plugin</code> from <code>2.4.3</code> to <code>2.5</code>.</li>
+      <li>Updated the <code>maven-gpg-plugin</code> from <code>1.1</code> to <code>1.2</code>.</li>
       <li>Added <code>jdk15-jaxb20-signature</code> module.</li>
       <li>Added <code>jdk15-jaxb21-signature</code> module.</li>
       <li>Added <code>jdk15-jaxb22-signature</code> module.</li>
