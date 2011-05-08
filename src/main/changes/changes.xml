@@ -73,6 +73,7 @@
     <release version="1.7">
       <action dev="schulte2005" type="update"><![CDATA[POM updates:<ul>
       <li>Updated the <code>buildnumber-maven-plugin</code> from <code>1.0-beta-4</code> to <code>1.0</code>.</li>
+      <li>Updated the <code>maven-javadoc-plugin</code> from <code>2.7</code> to <code>2.8</code>.</li>
       </ul>]]>
       </action>
     </release>
