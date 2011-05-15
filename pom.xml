@@ -171,7 +171,7 @@
           <configuration>
             <arguments>
               <argument>-tsa</argument>
-              <argument>http://time.certum.pl/</argument>
+              <argument>${jarsigner.tsa}</argument>
             </arguments>
           </configuration>
         </plugin>
