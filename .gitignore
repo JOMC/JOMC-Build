@@ -1,1 +1,6 @@
 /target
+/.project
+/.settings
+/jomc-build.iml
+/jomc-build.ipr
+/jomc-build.iws

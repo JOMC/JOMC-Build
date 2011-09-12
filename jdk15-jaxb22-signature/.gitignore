@@ -1,1 +1,4 @@
 /target
+/.settings
+/.project
+/jdk15-jaxb22-signature.iml

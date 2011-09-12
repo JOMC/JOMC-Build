@@ -1,1 +1,4 @@
 /target
+/.settings
+/.project
+/jdk15-jpa10-signature.iml
