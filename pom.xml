@@ -168,6 +168,8 @@
           <version>1.2</version>
           <configuration>
             <arguments>
+              <argument>-digestalg</argument>
+              <argument>SHA-256</argument>
               <argument>-tsa</argument>
               <argument>${jarsigner.tsa}</argument>
             </arguments>
