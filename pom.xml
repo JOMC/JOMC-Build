@@ -314,6 +314,10 @@
                     <message>This project requires Apache Maven 2.2.1 (r801777; 2009-08-06 21:16:01+0200).</message>
                     <version>[2.2.1]</version>
                   </requireMavenVersion>
+                  <requireJavaVersion>
+                    <message>This project should be built using JDK 6 or any later version.</message>
+                    <version>[1.6.0,)</version>
+                  </requireJavaVersion>
                 </rules>
               </configuration>
             </execution>
