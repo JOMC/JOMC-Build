@@ -42,7 +42,7 @@
 
   <xsl:param name="project.name"/>
   <xsl:param name="project.version"/>
-  <xsl:param name="build.number"/>
+  <xsl:param name="project.date"/>
 
   <xsl:template match="changes:document">
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -68,7 +68,7 @@
       </head>
       <body>
         <p class="title"><xsl:value-of select="$project.name"/> Changelog</p>
-        <p class="buildinfo">Version <xsl:value-of select="$project.version"/> - Build <xsl:value-of select="$build.number"/></p>
+        <p class="buildinfo">Version <xsl:value-of select="$project.version"/> (<xsl:value-of select="$project.date"/>)</p>
         <table>
           <tr class="headRow">
             <th class="headCell">Version</th>

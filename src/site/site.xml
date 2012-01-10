@@ -49,23 +49,32 @@
   </bannerRight>
   <body>
     <head>
-      <meta name="keywords" lang="de" content="objekt, container, java, quelltext, generator, quelltextgenerator, configuration, management"/>
+      <meta name="keywords" lang="de" content="objekt, behälter, java, quelltext, generator, quelltextgenerator, konfiguration, verwaltung, konfigurationsverwaltung"/>
       <meta name="keywords" lang="en" content="object, container, java, source, code, sourcecode, generator, sourcecodegenerator, configuration, management"/>
       <script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-23230934-1']);
-_gaq.push(['_trackPageview']);
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-23230934-1']);
+        _gaq.push(['_trackPageview']);
 
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
       </script>
     </head>
-    <menu ref="parent" inherit="top" inheritAsRef="false"/>
-    <menu ref="modules" inherit="top" inheritAsRef="false"/>
-    <menu name="Sourceforge" inherit="bottom" inheritAsRef="false">
+    <menu name="Build" inherit="top">
+      <item name="Home" href="${project.url}/index.html"/>
+      <item name="Resources" href="${project.url}/jomc-build-resources/index.html"/>
+    </menu>
+    <menu name="Animal Sniffer Signatures" inherit="top">
+      <item name="JDK 1.5 - JAXB 2.0" href="${project.url}/jomc-build-signatures/jdk15-jaxb20-signature/index.html"/>
+      <item name="JDK 1.5 - JAXB 2.1" href="${project.url}/jomc-build-signatures/jdk15-jaxb21-signature/index.html"/>
+      <item name="JDK 1.5 - JAXB 2.2" href="${project.url}/jomc-build-signatures/jdk15-jaxb22-signature/index.html"/>
+      <item name="JDK 1.5 - JPA 1.0" href="${project.url}/jomc-build-signatures/jdk15-jpa10-signature/index.html"/>
+      <item name="JDK 1.5 - JTA 1.1" href="${project.url}/jomc-build-signatures/jdk15-jta11-signature/index.html"/>
+    </menu>
+    <menu name="Sourceforge" inherit="bottom">
       <item name="Home" href="http://jomc.sourceforge.net/project/home"/>
       <item name="Files" href="http://jomc.sourceforge.net/project/files"/>
       <item name="Issues" href="http://jomc.sourceforge.net/project/issues"/>
@@ -73,6 +82,6 @@ _gaq.push(['_trackPageview']);
       <item name="Support" href="http://jomc.sourceforge.net/project/support"/>
       <item name="Statistics" href="http://jomc.sourceforge.net/project/statistics"/>
     </menu>
-    <menu ref="reports" inherit="bottom" inheritAsRef="false"/>
+    <menu ref="reports" inherit="bottom"/>
   </body>
 </project>

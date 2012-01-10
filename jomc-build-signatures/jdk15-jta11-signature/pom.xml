@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Copyright (C) Christian Schulte, 2005-206
+  All rights reserved.
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+    o Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+
+    o Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in
+      the documentation and/or other materials provided with the
+      distribution.
+
+  THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+  AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+  THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DIRECT, INDIRECT,
+  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+  $JOMC$
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <artifactId>jomc-build-signatures</artifactId>
+    <groupId>org.jomc.build</groupId>
+    <version>1.7-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>jdk15-jta11-signature</artifactId>
+  <packaging>pom</packaging>
+  <name>JOMC Build :: Animal Sniffer Signatures :: JDK 1.5 - JTA 1.1</name>
+  <description>Java 1.5 signature with JTA 1.1 extension excluding vendor specific implementation classes.</description>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>animal-sniffer-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>default-build</id>
+              <phase>package</phase>
+              <goals>
+                <goal>build</goal>
+              </goals>
+              <configuration>
+                <includeDependencies>
+                  <includeDependency>javax.transaction:transaction-api:jar</includeDependency>
+                </includeDependencies>
+                <includeClasses>
+                  <includeClass>java.*</includeClass>
+                  <includeClass>javax.accessibility.*</includeClass>
+                  <includeClass>javax.activity.*</includeClass>
+                  <includeClass>javax.annotation.*</includeClass>
+                  <includeClass>javax.crypto.*</includeClass>
+                  <includeClass>javax.imageio.*</includeClass>
+                  <includeClass>javax.management.*</includeClass>
+                  <includeClass>javax.naming.*</includeClass>
+                  <includeClass>javax.net.*</includeClass>
+                  <includeClass>javax.print.*</includeClass>
+                  <includeClass>javax.rmi.*</includeClass>
+                  <includeClass>javax.security.auth.*</includeClass>
+                  <includeClass>javax.security.cert.*</includeClass>
+                  <includeClass>javax.security.sasl.*</includeClass>
+                  <includeClass>javax.sound.midi.*</includeClass>
+                  <includeClass>javax.sound.sampled.*</includeClass>
+                  <includeClass>javax.sql.*</includeClass>
+                  <includeClass>javax.swing.*</includeClass>
+                  <includeClass>javax.transaction.*</includeClass>
+                  <includeClass>javax.xml.*</includeClass>
+                  <includeClass>org.ietf.jgss.*</includeClass>
+                  <includeClass>org.omg.CORBA.*</includeClass>
+                  <includeClass>org.omg.CORBA_2_3.*</includeClass>
+                  <includeClass>org.omg.CosNaming.*</includeClass>
+                  <includeClass>org.omg.Dynamic.*</includeClass>
+                  <includeClass>org.omg.DynamicAny.*</includeClass>
+                  <includeClass>org.omg.IOP.*</includeClass>
+                  <includeClass>org.omg.Messaging.*</includeClass>
+                  <includeClass>org.omg.PortableInterceptor.*</includeClass>
+                  <includeClass>org.omg.PortableServer.*</includeClass>
+                  <includeClass>org.omg.SendingContext.*</includeClass>
+                  <includeClass>org.omg.stub.java.rmi.*</includeClass>
+                  <includeClass>org.w3c.dom.*</includeClass>
+                  <includeClass>org.xml.sax.*</includeClass>
+                </includeClasses>
+                <includeModuleClasses>false</includeModuleClasses>
+                <includeJavaHome>false</includeJavaHome>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>javax.transaction</groupId>
+      <artifactId>transaction-api</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.mojo.signature</groupId>
+      <artifactId>java15</artifactId>
+      <type>signature</type>
+      <version>1.0</version>
+    </dependency>
+  </dependencies>
+</project>

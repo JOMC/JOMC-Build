@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Copyright (C) Christian Schulte, 2012-10
+  All rights reserved.
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+    o Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+
+    o Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in
+      the documentation and/or other materials provided with the
+      distribution.
+
+  THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+  AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+  THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DIRECT, INDIRECT,
+  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+  $JOMC$
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <artifactId>jomc-build</artifactId>
+    <groupId>org.jomc.build</groupId>
+    <version>1.7-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.jomc.build</groupId>
+  <artifactId>jomc-build-signatures</artifactId>
+  <packaging>pom</packaging>
+  <name>JOMC Build :: Animal Sniffer Signatures</name>
+  <description>Animal Sniffer signatures parent project object model.</description>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>default-attach-artifact</id>
+              <configuration>
+                <artifacts combine.children="append">
+                  <artifact>
+                    <file>${project.build.directory}/generated-resources/xml/xslt/changes.xml</file>
+                    <type>xhtml</type>
+                    <classifier>changes</classifier>
+                  </artifact>
+                </artifacts>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>default-unpack</id>
+              <phase>prepare-package</phase>
+              <goals>
+                <goal>unpack</goal>
+              </goals>
+              <configuration>
+                <artifactItems>
+                  <artifactItem>
+                    <groupId>org.jomc.build</groupId>
+                    <artifactId>jomc-build-resources</artifactId>
+                    <version>${project.version}</version>
+                    <outputDirectory>${project.build.directory}/jomc-build-resources</outputDirectory>
+                  </artifactItem>
+                </artifactItems>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-remote-resources-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>default-process</id>
+              <goals>
+                <goal>process</goal>
+              </goals>
+              <configuration>
+                <resourceBundles>
+                  <resourceBundle>org.jomc.build:jomc-build-resources:${project.version}</resourceBundle>
+                </resourceBundles>
+                <properties>
+                  <buildDate>${build.date}</buildDate>
+                  <with-developer-copyright>true</with-developer-copyright>
+                </properties>
+                <outputDirectory>${remoteResourcesOutputDirectory}</outputDirectory>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>xml-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>default-transform</id>
+              <phase>prepare-package</phase>
+              <goals>
+                <goal>transform</goal>
+              </goals>
+              <configuration>
+                <transformationSets>
+                  <transformationSet>
+                    <stylesheet>${project.build.directory}/jomc-build-resources/org/jomc/build/resources/changes-report-1.0.0.xslt</stylesheet>
+                    <dir>src/main/changes</dir>
+                    <includes>
+                      <include>changes.xml</include>
+                    </includes>
+                    <parameters>
+                      <parameter>
+                        <name>project.name</name>
+                        <value>${project.name}</value>
+                      </parameter>
+                      <parameter>
+                        <name>project.version</name>
+                        <value>${project.version}</value>
+                      </parameter>
+                      <parameter>
+                        <name>project.date</name>
+                        <value>${build.date}</value>
+                      </parameter>
+                    </parameters>
+                  </transformationSet>
+                </transformationSets>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  <modules>
+    <module>jdk15-jaxb20-signature</module>
+    <module>jdk15-jaxb21-signature</module>
+    <module>jdk15-jaxb22-signature</module>
+    <module>jdk15-jpa10-signature</module>
+    <module>jdk15-jta11-signature</module>
+  </modules>
+</project>

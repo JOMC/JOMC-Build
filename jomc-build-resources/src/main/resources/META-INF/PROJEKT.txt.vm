@@ -4,7 +4,7 @@
 #else
   ${project.name} - PROJEKT.txt
 #end
-  Version ${project.version} Build ${buildNumber}
+  Version ${project.version} (${buildDate})
 #if($project.url)
   ${project.url}
 #end

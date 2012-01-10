@@ -127,13 +127,24 @@
       <action dev="schulte2005" type="add"><![CDATA[Added license comments to the <code>PROJECT.txt.vm</code> and
       <code>PROJEKT.txt.vm</code> resources.]]>
       </action>
+      <action dev="schulte2005" type="add"><![CDATA[Added <code>with-developer-copyright</code> and
+      <code>with-organization-copyright</code> template parameters to the <code>META-INF/LICENSE.txt.vm</code> and
+      <code>META-INF/LIZENZ.txt.vm</code> resources.]]>
+      </action>
       <action dev="schulte2005" type="fix"><![CDATA[Updated the <code>PROJECT.txt.vm</code> and
       <code>PROJEKT.txt.vm</code> resources to support licenses without name suppressing corresponding build
       warnings.]]>
       </action>
       <action dev="schulte2005" type="update"><![CDATA[Updated the <code>PROJECT.txt.vm</code> and
-      <code>PROJEKT.txt.vm</code> resources to only use license URLs for with protocols <code>http</code> and
+      <code>PROJEKT.txt.vm</code> resources to only use license URLs with protocols <code>http</code> and
       <code>ftp</code>.]]>
+      </action>
+      <action dev="schulte2005" type="update"><![CDATA[Renamed the <code>buildNumber</code> template parameter of the
+      <code>META-INF/PROJECT.txt.vm</code> and <code>META-INF/PROJEKT.txt.vm</code> resources to
+      <code>buildDate</code>.]]>
+      </action>
+      <action dev="schulte2005" type="update"><![CDATA[Renamed the <code>build.number</code> stylesheet parameter of the
+      <code>org/jomc/build/resources/changes-report-1.0.0.xslt</code> resource to <code>project.date</code>.]]>
       </action>
     </release>
   </body>
