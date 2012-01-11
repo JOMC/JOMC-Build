@@ -123,7 +123,7 @@
     <!-- *********************************************************************************************************** -->
     <release version="1.6" date="2011-02-08"/>
     <!-- *********************************************************************************************************** -->
-    <release version="1.7">
+    <release version="1.7" date="2012-01-11">
       <action dev="schulte2005" type="add"><![CDATA[Added license comments to the <code>PROJECT.txt.vm</code> and
       <code>PROJEKT.txt.vm</code> resources.]]>
       </action>
