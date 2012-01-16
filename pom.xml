@@ -1139,6 +1139,22 @@
                 </rules>
               </configuration>
             </plugin>
+            <!-- plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-changes-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>default-changes-check</id>
+                  <phase>validate</phase>
+                  <goals>
+                    <goal>changes-check</goal>
+                  </goals>
+                  <configuration>
+                    <skipSnapshots>true</skipSnapshots> See http://jira.codehaus.org/browse/MCHANGES-272
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin -->
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-deploy-plugin</artifactId>
