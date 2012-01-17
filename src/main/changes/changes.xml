@@ -100,5 +100,9 @@
       <action dev="schulte2005" type="update"><![CDATA[Updated the <code>maven-surefire-report-plugin</code> from <code>2.8.1</code> to <code>2.11</code>.]]></action>
       <action dev="schulte2005" type="remove"><![CDATA[Removed the <code>buildnumber-maven-plugin</code>.]]></action>
     </release>
+    <!-- *********************************************************************************************************** -->
+    <release version="1.8">
+      <action dev="schulte2005" type="update"><![CDATA[Updated the <code>maven-javadoc-plugin</code> from <code>2.8</code> to <code>2.8.1</code>.]]></action>
+    </release>
   </body>
 </document>
