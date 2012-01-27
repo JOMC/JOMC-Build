@@ -103,6 +103,8 @@
     <!-- *********************************************************************************************************** -->
     <release version="1.8">
       <action dev="schulte2005" type="update"><![CDATA[Updated the version of the <code>maven-javadoc-plugin</code> from <code>2.8</code> to <code>2.8.1</code>.]]></action>
+      <action dev="schulte2005" type="update"><![CDATA[Updated the version of the <code>maven-assembly-plugin</code> from <code>2.2.2</code> to <code>2.3</code>.]]></action>
+      <action dev="schulte2005" type="update"><![CDATA[Updated the version of the <code>maven-jar-plugin</code> from <code>2.3.2</code> to <code>2.4</code>.]]></action>
       <action dev="schulte2005" type="update"><![CDATA[Updated the version of <code>maven-classic-skin</code> from <code>1.0</code> to <code>1.1</code>.]]></action>
     </release>
   </body>

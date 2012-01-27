@@ -140,15 +140,15 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>2.3.2</version>
+          <version>2.4</version>
           <configuration>
+            <skipIfEmpty>true</skipIfEmpty>
             <archive>
               <index>true</index>
               <addMavenDescriptor>false</addMavenDescriptor>
               <compress>true</compress>
               <manifestEntries>
                 <Build-Date>${build.date}</Build-Date>
-                <Maven-Version>${maven.version}</Maven-Version>
               </manifestEntries>
             </archive>
           </configuration>
@@ -302,7 +302,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
-          <version>2.2.2</version>
+          <version>2.3</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
