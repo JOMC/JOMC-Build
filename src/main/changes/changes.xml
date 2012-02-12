@@ -110,6 +110,7 @@
       <action dev="schulte2005" type="update"><![CDATA[Updated the <code>maven-surefire-plugin</code> from <code>2.11</code> to <code>2.12</code>.]]></action>
       <action dev="schulte2005" type="update"><![CDATA[Updated the <code>maven-surefire-report-plugin</code> from <code>2.11</code> to <code>2.12</code>.]]></action>
       <action dev="schulte2005" type="update"><![CDATA[Updated the <code>maven-pmd-plugin</code> from <code>2.6</code> to <code>2.7</code>.]]></action>
+      <action dev="schulte2005" type="update"><![CDATA[Updated the <code>maven-checkstyle-plugin</code> from <code>2.8</code> to <code>2.9</code>.]]></action>
     </release>
   </body>
 </document>
