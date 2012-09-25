@@ -38,59 +38,36 @@
   <name>JOMC Build</name>
   <version>1.8-SNAPSHOT</version>
   <description>Object management and configuration build support.</description>
-  <url>http://jomc.sourceforge.net/jomc-build/${project.version}</url>
+  <url>http://www.jomc.org/jomc-build/${project.version}</url>
   <inceptionYear>2005</inceptionYear>
   <organization>
     <name>The JOMC Project</name>
-    <url>http://jomc.sourceforge.net</url>
+    <url>http://www.jomc.org</url>
   </organization>
   <licenses>
     <license>
       <name>The JOMC Project Copyright</name>
-      <url>http://jomc.sourceforge.net/LICENSE.txt</url>
+      <url>http://www.jomc.org/LICENSE.txt</url>
       <distribution>repo</distribution>
       <comments>Simplified BSD License.</comments>
     </license>
   </licenses>
   <developers>
     <developer>
-      <id>schulte2005</id>
+      <id>schulte</id>
       <name>Christian Schulte</name>
       <timezone>Europe/Berlin</timezone>
-      <email>schulte2005@users.sourceforge.net</email>
+      <email>cs@schulte.it</email>
     </developer>
   </developers>
   <issueManagement>
     <system>Trac</system>
-    <url>http://sourceforge.net/apps/trac/jomc</url>
+    <url>http://www.jomc.org/trac</url>
   </issueManagement>
-  <mailingLists>
-    <mailingList>
-      <name>jomc-users</name>
-      <subscribe>http://jomc.sourceforge.net/project/listinfo?jomc-users</subscribe>
-      <unsubscribe>http://jomc.sourceforge.net/project/listinfo?jomc-users</unsubscribe>
-      <post>jomc-users@lists.sourceforge.net</post>
-      <archive>http://jomc.sourceforge.net/project/listarchive?jomc-users</archive>
-    </mailingList>
-    <mailingList>
-      <name>jomc-svn</name>
-      <subscribe>http://jomc.sourceforge.net/project/listinfo?jomc-svn</subscribe>
-      <unsubscribe>http://jomc.sourceforge.net/project/listinfo?jomc-svn</unsubscribe>
-      <post>jomc-svn@lists.sourceforge.net</post>
-      <archive>http://jomc.sourceforge.net/project/listarchive?jomc-svn</archive>
-    </mailingList>
-    <mailingList>
-      <name>jomc-notifications</name>
-      <subscribe>http://jomc.sourceforge.net/project/listinfo?jomc-notifications</subscribe>
-      <unsubscribe>http://jomc.sourceforge.net/project/listinfo?jomc-notifications</unsubscribe>
-      <post>jomc-notifications@lists.sourceforge.net</post>
-      <archive>http://jomc.sourceforge.net/project/listarchive?jomc-notifications</archive>
-    </mailingList>
-  </mailingLists>
   <scm>
-    <connection>scm:svn:https://jomc.svn.sourceforge.net/svnroot/jomc/jomc-build/trunk</connection>
-    <developerConnection>scm:svn:https://jomc.svn.sourceforge.net/svnroot/jomc/jomc-build/trunk</developerConnection>
-    <url>http://jomc.sourceforge.net/project/sources?jomc-build/trunk</url>
+    <connection>scm:svn:http://svn.jomc.org/svnroot/jomc/jomc-build/trunk</connection>
+    <developerConnection>scm:svn:http://svn.jomc.org/svnroot/jomc/jomc-build/trunk</developerConnection>
+    <url>http://svn.jomc.org/jomc-build/trunk</url>
   </scm>
   <build>
     <pluginManagement>
@@ -208,9 +185,8 @@
           <version>2.8.1</version>
           <configuration>
             <quiet>true</quiet>
-            <bottom><![CDATA[<table border="0" width="100%"><tr><td align="left">Copyright &#169; {inceptionYear}-{currentYear} {organizationName}. All Rights Reserved.</td><td align="right"><a href="http://sourceforge.net/projects/jomc"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=257507&type=10" width="80" height="15" border="0" alt="Get JOMC at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a></td></tr></table><small>Please note that this documentation is maintained by non-native english speaking authors. As such, you may encounter phrases or wordings which seem imprecise or may even have a totally different meaning to native english speaking readers than what the individual author was trying to express. If you are a native english speaking reader and find any such phrases or wordings we kindly ask you to send an email to the corresponding author and help us improve this documentation in order to avoid misunderstandings. You will find the authors' email addresses at the top of each class. Please accept our apologies for any inconvenience caused.</small>]]></bottom>
+            <top><![CDATA[<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-23230934-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>]]></top>
             <breakiterator>true</breakiterator>
-            <header><![CDATA[<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-23230934-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>]]></header>
             <keywords>true</keywords>
             <linksource>true</linksource>
             <serialwarn>true</serialwarn>
@@ -770,9 +746,8 @@
         </reportSets>
         <configuration>
           <quiet>true</quiet>
-          <bottom><![CDATA[<table border="0" width="100%"><tr><td align="left">Copyright &#169; {inceptionYear}-{currentYear} {organizationName}. All Rights Reserved.</td><td align="right"><a href="http://sourceforge.net/projects/jomc"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=257507&type=10" width="80" height="15" border="0" alt="Get JOMC at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a></td></tr></table><small>Please note that this documentation is maintained by non-native english speaking authors. As such, you may encounter phrases or wordings which seem imprecise or may even have a totally different meaning to native english speaking readers than what the individual author was trying to express. If you are a native english speaking reader and find any such phrases or wordings we kindly ask you to send an email to the corresponding author and help us improve this documentation in order to avoid misunderstandings. You will find the authors' email addresses at the top of each class. Please accept our apologies for any inconvenience caused.</small>]]></bottom>
+          <top><![CDATA[<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-23230934-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>]]></top>
           <breakiterator>true</breakiterator>
-          <header><![CDATA[<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-23230934-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>]]></header>
           <keywords>true</keywords>
           <linksource>true</linksource>
           <serialwarn>true</serialwarn>
@@ -917,8 +892,7 @@
             </reports>
             <configuration>
               <issueLinkTemplatePerSystem>
-                <MantisBT>http://sourceforge.net/apps/mantisbt/jomc/view.php?id=%ISSUE%</MantisBT>
-                <Trac>http://sourceforge.net/apps/trac/jomc/ticket/%ISSUE%</Trac>
+                <Trac>http://www.jomc.org/trac/ticket/%ISSUE%</Trac>
               </issueLinkTemplatePerSystem>
               <xmlPath>src/main/changes/changes.xml</xmlPath>
               <escapeHTML>false</escapeHTML>
@@ -1023,9 +997,9 @@
       <url>http://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
     <site>
-      <id>jomc.sourceforge.net</id>
-      <name>JOMC Site</name>
-      <url>scp://shell.sourceforge.net/home/project-web/jomc/htdocs/jomc-build/${project.version}</url>
+      <id>jomc.org</id>
+      <name>JOMC Build Site</name>
+      <url>dav:http://www.jomc.org/jomc-build/${project.version}</url>
     </site>
   </distributionManagement>
   <profiles>
