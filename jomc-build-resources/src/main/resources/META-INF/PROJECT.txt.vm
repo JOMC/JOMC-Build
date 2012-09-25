@@ -72,7 +72,7 @@
     System ............. : $project.issueManagement.system
     URL ................ : $project.issueManagement.url
 #end
-#if(!$project.mailingLists.isEmpty)
+#if($project.mailingLists && !$project.mailingLists.isEmpty)
 
   Mailing lists
 #foreach($list in $project.mailingLists)
