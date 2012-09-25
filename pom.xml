@@ -1125,22 +1125,6 @@
             </plugin>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-changes-plugin</artifactId>
-              <executions>
-                <execution>
-                  <id>default-changes-check</id>
-                  <phase>validate</phase>
-                  <goals>
-                    <goal>changes-check</goal>
-                  </goals>
-                  <configuration>
-                    <skipSnapshots>true</skipSnapshots>
-                  </configuration>
-                </execution>
-              </executions>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-deploy-plugin</artifactId>
               <configuration>
                 <updateReleaseInfo>true</updateReleaseInfo>
