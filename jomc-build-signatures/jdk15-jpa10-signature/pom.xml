@@ -39,7 +39,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>jdk15-jpa10-signature</artifactId>
   <packaging>pom</packaging>
-  <name>JOMC Build :: Animal Sniffer Signatures :: JDK 1.5 - JPA 1.0</name>
+  <name>JOMC Build ⁑ Animal Sniffer Signatures ⁑ JDK 1.5 - JPA 1.0</name>
   <description>Java 1.5 signature with JPA 1.0 extension excluding vendor specific implementation classes.</description>
   <build>
     <pluginManagement>

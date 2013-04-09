@@ -76,13 +76,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven-compiler-plugin.artifact.version}</version>
-          <configuration>
-            <optimize>true</optimize>
-            <showDeprecation>true</showDeprecation>
-            <showWarnings>true</showWarnings>
-            <source>1.5</source>
-            <target>1.5</target>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -210,7 +203,7 @@
                   <keywords>true</keywords>
                   <linksource>true</linksource>
                   <serialwarn>true</serialwarn>
-                  <source>1.5</source>
+                  <source>${maven.compiler.source}</source>
                   <doctitle>${project.name} ${project.version}</doctitle>
                   <testDoctitle>${project.name} Tests ${project.version}</testDoctitle>
                   <windowtitle>${project.name} ${project.version}</windowtitle>
@@ -236,6 +229,7 @@
                       <version>${plexuscontainers.version}</version>
                     </tagletArtifact>
                   </tagletArtifacts>
+                  <additionalJOption>${maven.javadoc.additionalJOption}</additionalJOption>
                   <additionalparam>-inferrel -inferdep -hide java.* -collpackages java.util.* -qualify -postfixpackage -nodefontsize 10 -nodefontpackagesize 8 -outputencoding ${project.reporting.outputEncoding} -inferdepvis protected</additionalparam>
                 </configuration>
               </reportPlugin>
@@ -303,7 +297,7 @@
                 </reportSets>
                 <configuration>
                   <format>none</format>
-                  <targetJdk>1.5</targetJdk>
+                  <targetJdk>${maven.compiler.target}</targetJdk>
                 </configuration>
               </reportPlugin>
               <reportPlugin>
@@ -344,7 +338,7 @@
                       <report>trac-report</report>
                     </reports>
                     <configuration>
-                      <query>order=id&amp;version=${project.version}&amp;component=JOMC Build|JOMC Build :: Animal Sniffer Signatures|${project.name}</query>
+                      <query>order=id&amp;version=${project.version}&amp;component=JOMC Build|JOMC Build ⁑ Animal Sniffer Signatures|${project.name}</query>
                       <tracUser>${jomc.trac.username}</tracUser>
                       <tracPassword>${jomc.trac.password}</tracPassword>
                     </configuration>
@@ -363,7 +357,7 @@
                   </reportSet>
                 </reportSets>
                 <configuration>
-                  <maxHeap>256</maxHeap>
+                  <jvmArgs>${mojo.findbugs.jvmArgs}</jvmArgs>
                 </configuration>
               </reportPlugin>
               <reportPlugin>
@@ -464,6 +458,8 @@
             <goals>deploy</goals>
             <useReleaseProfile>false</useReleaseProfile>
             <releaseProfiles>jomc-release</releaseProfiles>
+            <remoteTagging>false</remoteTagging>
+            <suppressCommitBeforeTag>true</suppressCommitBeforeTag>
           </configuration>
         </plugin>
         <plugin>
@@ -493,6 +489,12 @@
           <version>${maven-jarsigner-plugin.artifact.version}</version>
           <configuration>
             <arguments>
+              <argument>-J-client</argument>
+              <argument>-J-Xms32m</argument>
+              <argument>-J-Xmx32m</argument>
+              <argument>-J-Xss2m</argument>
+              <argument>-J-Dfile.encoding=${file.encoding}</argument>
+              <argument>-J-Djsse.enableSNIExtension=false</argument>
               <argument>-digestalg</argument>
               <argument>SHA-256</argument>
               <argument>-tsa</argument>
@@ -510,7 +512,7 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${surefire.version}</version>
           <configuration>
-            <argLine>-client -Xmx256m</argLine>
+            <argLine>${maven.surefire.argLine}</argLine>
             <forkMode>once</forkMode>
             <redirectTestOutputToFile>true</redirectTestOutputToFile>
             <runOrder>random</runOrder>
@@ -542,7 +544,7 @@
             <keywords>true</keywords>
             <linksource>true</linksource>
             <serialwarn>true</serialwarn>
-            <source>1.5</source>
+            <source>${maven.compiler.source}</source>
             <doctitle>${project.name} ${project.version}</doctitle>
             <testDoctitle>${project.name} Tests ${project.version}</testDoctitle>
             <windowtitle>${project.name} ${project.version}</windowtitle>
@@ -568,6 +570,7 @@
                 <version>${plexuscontainers.version}</version>
               </tagletArtifact>
             </tagletArtifacts>
+            <additionalJOption>${maven.javadoc.additionalJOption}</additionalJOption>
             <additionalparam>-inferrel -inferdep -hide java.* -collpackages java.util.* -qualify -postfixpackage -nodefontsize 10 -nodefontpackagesize 8 -outputencoding ${project.reporting.outputEncoding} -inferdepvis protected</additionalparam>
             <archive>
               <index>true</index>
@@ -680,28 +683,12 @@
             <fail>false</fail>
             <rules>
               <requireJavaVersion>
-                <message>
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! This project should be built using JDK 7 or any later version.                             !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                </message>
                 <version>[1.7.0,)</version>
               </requireJavaVersion>
               <requireMavenVersion>
-                <message>
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! This project should be built using Apache Maven 3.0.4 (r1232337; 2012-01-17 09:44:56+0100) !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                </message>
-                <version>[3.0.4]</version>
+                <version>[3.0.4,3.0.6)</version>
               </requireMavenVersion>
-              <requireNoRepositories>
-                <message>
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! This project should not define repositories in the POM.                                    !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                </message>
-              </requireNoRepositories>
+              <requireNoRepositories/>
             </rules>
           </configuration>
         </plugin>
@@ -720,7 +707,7 @@
           <artifactId>maven-pmd-plugin</artifactId>
           <version>${maven-pmd-plugin.artifact.version}</version>
           <configuration>
-            <targetJdk>1.5</targetJdk>
+            <targetJdk>${maven.compiler.target}</targetJdk>
           </configuration>
         </plugin>
         <plugin>
@@ -810,7 +797,7 @@
           <artifactId>findbugs-maven-plugin</artifactId>
           <version>${findbugs-maven-plugin.artifact.version}</version>
           <configuration>
-            <maxHeap>256</maxHeap>
+            <jvmArgs>${mojo.findbugs.jvmArgs}</jvmArgs>
           </configuration>
         </plugin>
         <plugin>
@@ -941,23 +928,6 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
-  <reporting>
-    <!-- http://jira.codehaus.org/browse/MPMD-128 -->
-    <!-- http://jira.codehaus.org/browse/MCHECKSTYLE-150 -->
-    <!-- http://jira.codehaus.org/browse/SUREFIRE-683 -->
-    <!-- http://jira.codehaus.org/browse/MFINDBUGS-145 -->
-    <!-- http://jira.codehaus.org/browse/MCLIRR-38 -->
-    <!-- http://jira.codehaus.org/browse/JXR-91 -->
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jxr-plugin</artifactId>
-        <version>${maven-jxr-plugin.artifact.version}</version>
-      </plugin>
-    </plugins>
-  </reporting>
-
   <distributionManagement>
     <repository>
       <id>sonatype-nexus-staging</id>
@@ -970,9 +940,9 @@
       <url>http://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
     <site>
-      <id>jomc.org</id>
-      <name>JOMC Build Site</name>
-      <url>dav:http://www.jomc.org/jomc-build/${project.version}</url>
+      <id>${jomc.artifacts.distribution.id}</id>
+      <name>${jomc.artifacts.distribution.name}</name>
+      <url>${jomc.artifacts.distribution.url}</url>
     </site>
   </distributionManagement>
   <profiles>
@@ -1091,38 +1061,6 @@
       <build>
         <pluginManagement>
           <plugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-enforcer-plugin</artifactId>
-              <configuration>
-                <fail>true</fail>
-                <rules>
-                  <requireJavaVersion>
-                    <message>
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! This project must be released using JDK 7 or any later version.                            !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    </message>
-                    <version>[1.7.0,)</version>
-                  </requireJavaVersion>
-                  <requireMavenVersion>
-                    <message>
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! This project must be released using Apache Maven 3.0.4 (r1232337; 2012-01-17 09:44:56+0100)!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    </message>
-                    <version>[3.0.4]</version>
-                  </requireMavenVersion>
-                  <requireNoRepositories>
-                    <message>
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! This project must not define repositories in the POM.                                      !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    </message>
-                  </requireNoRepositories>
-                </rules>
-              </configuration>
-            </plugin>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-deploy-plugin</artifactId>
@@ -1259,6 +1197,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
+            <inherited>false</inherited>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -1288,58 +1227,76 @@
     </profile>
   </profiles>
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <xjcOutputDirectory>${project.build.directory}/generated-sources/jaxb</xjcOutputDirectory>
-    <xjcTestOutputDirectory>${project.build.directory}/generated-test-sources/jaxb</xjcTestOutputDirectory>
-    <!--
-    Netbeans IDE earlier than 7.1: http://netbeans.org/bugzilla/show_bug.cgi?id=187595
-    <xjcTestOutputDirectory>${project.build.directory}/generated-sources/jaxb-test</xjcTestOutputDirectory>
-    -->
-    <javaccOutputDirectory>${project.build.directory}/generated-sources/javacc</javaccOutputDirectory>
-    <remoteResourcesOutputDirectory>${project.build.directory}/maven-shared-archive-resources</remoteResourcesOutputDirectory>
-    <assembly.useJvmChmod>true</assembly.useJvmChmod>
-    <dependency.useJvmChmod>true</dependency.useJvmChmod>
-    <maven-compiler-plugin.artifact.version>2.5.1</maven-compiler-plugin.artifact.version>
-    <maven-site-plugin.artifact.version>3.1</maven-site-plugin.artifact.version>
-    <maven-resources-plugin.artifact.version>2.6</maven-resources-plugin.artifact.version>
-    <maven-release-plugin.artifact.version>2.3.2</maven-release-plugin.artifact.version>
-    <maven-jar-plugin.artifact.version>2.4</maven-jar-plugin.artifact.version>
-    <maven-gpg-plugin.artifact.version>1.4</maven-gpg-plugin.artifact.version>
-    <maven-jarsigner-plugin.artifact.version>1.2</maven-jarsigner-plugin.artifact.version>
-    <maven-remote-resources-plugin.artifact.version>1.3</maven-remote-resources-plugin.artifact.version>
-    <maven-javadoc-plugin.artifact.version>2.8.1</maven-javadoc-plugin.artifact.version>
-    <maven-clean-plugin.artifact.version>2.5</maven-clean-plugin.artifact.version>
-    <maven-deploy-plugin.artifact.version>2.7</maven-deploy-plugin.artifact.version>
-    <maven-dependency-plugin.artifact.version>2.5.1</maven-dependency-plugin.artifact.version>
-    <maven-install-plugin.artifact.version>2.4</maven-install-plugin.artifact.version>
-    <maven-source-plugin.artifact.version>2.1.2</maven-source-plugin.artifact.version> <!-- See http://jira.codehaus.org/browse/MSOURCES-62 -->
-    <maven-scm-plugin.artifact.version>1.7</maven-scm-plugin.artifact.version>
-    <maven-changes-plugin.artifact.version>2.7.1</maven-changes-plugin.artifact.version> <!-- See http://jira.codehaus.org/browse/MCHANGES-289 -->
-    <maven-enforcer-plugin.artifact.version>1.1.1</maven-enforcer-plugin.artifact.version>
-    <maven-project-info-reports-plugin.artifact.version>2.5.1</maven-project-info-reports-plugin.artifact.version>
-    <maven-jxr-plugin.artifact.version>2.3</maven-jxr-plugin.artifact.version>
-    <maven-pmd-plugin.artifact.version>2.7.1</maven-pmd-plugin.artifact.version>
-    <maven-checkstyle-plugin.artifact.version>2.9.1</maven-checkstyle-plugin.artifact.version>
-    <wagon-maven-plugin.artifact.version>1.0-beta-4</wagon-maven-plugin.artifact.version>
-    <javacc-maven-plugin.artifact.version>2.6</javacc-maven-plugin.artifact.version>
-    <build-helper-maven-plugin.artifact.version>1.7</build-helper-maven-plugin.artifact.version>
-    <xml-maven-plugin.artifact.version>1.0</xml-maven-plugin.artifact.version>
-    <clirr-maven-plugin.artifact.version>2.4</clirr-maven-plugin.artifact.version>
-    <findbugs-maven-plugin.artifact.version>2.5.2</findbugs-maven-plugin.artifact.version>
-    <emma-maven-plugin.artifact.version>1.0-alpha-3</emma-maven-plugin.artifact.version>
-    <taglist-maven-plugin.artifact.version>2.4</taglist-maven-plugin.artifact.version>
-    <maven-jaxb21-plugin.artifact.version>0.8.2</maven-jaxb21-plugin.artifact.version>
-    <maven-shade-plugin.artifact.version>2.0</maven-shade-plugin.artifact.version>
-    <maven-assembly-plugin.artifact.version>2.3</maven-assembly-plugin.artifact.version>
-    <animal-sniffer.version>1.8</animal-sniffer.version>
-    <surefire.version>2.12.3</surefire.version>
+    <!-- Artifact versions. -->
+    <animal-sniffer.version>1.9</animal-sniffer.version>
+    <surefire.version>2.14</surefire.version>
     <plugintools.version>2.9</plugintools.version> <!-- See http://jira.codehaus.org/browse/MNG-3762 -->
     <plexuscontainers.version>1.5.5</plexuscontainers.version>
-    <wagon.version>2.2</wagon.version>
+    <wagon.version>2.3</wagon.version>
     <slf4j.version>1.6.4</slf4j.version>
     <umlgraph.version>5.6</umlgraph.version>
     <cc-xjc-plugin.version>2.0.1</cc-xjc-plugin.version>
     <jaxb2-basics.version>0.6.3</jaxb2-basics.version>
+    <!-- Plugin versions. -->
+    <maven-compiler-plugin.artifact.version>3.1</maven-compiler-plugin.artifact.version>
+    <maven-site-plugin.artifact.version>3.1</maven-site-plugin.artifact.version> <!-- See http://jira.codehaus.org/browse/MSITE-665 -->
+    <maven-resources-plugin.artifact.version>2.6</maven-resources-plugin.artifact.version>
+    <maven-release-plugin.artifact.version>2.4.1</maven-release-plugin.artifact.version>
+    <maven-jar-plugin.artifact.version>2.4</maven-jar-plugin.artifact.version>
+    <maven-gpg-plugin.artifact.version>1.4</maven-gpg-plugin.artifact.version>
+    <maven-jarsigner-plugin.artifact.version>1.2</maven-jarsigner-plugin.artifact.version>
+    <maven-remote-resources-plugin.artifact.version>1.4</maven-remote-resources-plugin.artifact.version>
+    <maven-javadoc-plugin.artifact.version>2.9</maven-javadoc-plugin.artifact.version>
+    <maven-clean-plugin.artifact.version>2.5</maven-clean-plugin.artifact.version>
+    <maven-deploy-plugin.artifact.version>2.7</maven-deploy-plugin.artifact.version>
+    <maven-dependency-plugin.artifact.version>2.7</maven-dependency-plugin.artifact.version>
+    <maven-install-plugin.artifact.version>2.4</maven-install-plugin.artifact.version>
+    <maven-source-plugin.artifact.version>2.2.1</maven-source-plugin.artifact.version>
+    <maven-scm-plugin.artifact.version>1.8.1</maven-scm-plugin.artifact.version>
+    <maven-changes-plugin.artifact.version>2.9</maven-changes-plugin.artifact.version>
+    <maven-enforcer-plugin.artifact.version>1.2</maven-enforcer-plugin.artifact.version>
+    <maven-project-info-reports-plugin.artifact.version>2.6</maven-project-info-reports-plugin.artifact.version>
+    <maven-jxr-plugin.artifact.version>2.3</maven-jxr-plugin.artifact.version>
+    <maven-pmd-plugin.artifact.version>3.0.1</maven-pmd-plugin.artifact.version>
+    <maven-checkstyle-plugin.artifact.version>2.9.1</maven-checkstyle-plugin.artifact.version>
+    <wagon-maven-plugin.artifact.version>1.0-beta-4</wagon-maven-plugin.artifact.version>
+    <javacc-maven-plugin.artifact.version>2.6</javacc-maven-plugin.artifact.version>
+    <build-helper-maven-plugin.artifact.version>1.8</build-helper-maven-plugin.artifact.version>
+    <xml-maven-plugin.artifact.version>1.0</xml-maven-plugin.artifact.version>
+    <clirr-maven-plugin.artifact.version>2.5</clirr-maven-plugin.artifact.version>
+    <findbugs-maven-plugin.artifact.version>2.5.2</findbugs-maven-plugin.artifact.version>
+    <emma-maven-plugin.artifact.version>1.0-alpha-3</emma-maven-plugin.artifact.version>
+    <taglist-maven-plugin.artifact.version>2.4</taglist-maven-plugin.artifact.version>
+    <maven-jaxb21-plugin.artifact.version>0.8.3</maven-jaxb21-plugin.artifact.version>
+    <maven-shade-plugin.artifact.version>2.0</maven-shade-plugin.artifact.version>
+    <maven-assembly-plugin.artifact.version>2.4</maven-assembly-plugin.artifact.version>
+    <!-- Plugin parameters. -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <xjcOutputDirectory>${project.build.directory}/generated-sources/jaxb</xjcOutputDirectory>
+    <xjcTestOutputDirectory>${project.build.directory}/generated-test-sources/jaxb</xjcTestOutputDirectory>
+    <javaccOutputDirectory>${project.build.directory}/generated-sources/javacc</javaccOutputDirectory>
+    <remoteResourcesOutputDirectory>${project.build.directory}/maven-shared-archive-resources</remoteResourcesOutputDirectory>
+    <assembly.useJvmChmod>true</assembly.useJvmChmod>
+    <dependency.useJvmChmod>true</dependency.useJvmChmod>
+    <maven.compiler.optimize>true</maven.compiler.optimize>
+    <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+    <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+    <maven.compiler.source>1.5</maven.compiler.source>
+    <maven.compiler.target>1.5</maven.compiler.target>
+    <maven.javadoc.additionalJOption>-J-client -J-Xms32m -J-Xmx32m -J-Xss2m -J-Dfile.encoding=${file.encoding}</maven.javadoc.additionalJOption>
+    <maven.surefire.argLine>-client -Xms32m -Xmx32m -Xss2m -Dfile.encoding=${file.encoding}</maven.surefire.argLine>
+    <mojo.findbugs.jvmArgs>-client -Xms32m -Xmx32m -Xss2m -Dfile.encoding=${file.encoding}</mojo.findbugs.jvmArgs>
+    <!-- Parent -->
+    <jomc.base.version>1.9</jomc.base.version>
+    <jomc.frs.distribution.id>frs.jomc.org</jomc.frs.distribution.id>
+    <jomc.frs.distribution.url>dav:http://frs.jomc.org/</jomc.frs.distribution.url>
+    <jomc.xml.distribution.id>xml.jomc.org</jomc.xml.distribution.id>
+    <jomc.xml.distribution.url>dav:http://xml.jomc.org/</jomc.xml.distribution.url>
+    <jomc.artifacts.url>http://www.jomc.org/jomc-build/${jomc.base.version}</jomc.artifacts.url>
+    <jomc.artifacts.distribution.id>www.jomc.org</jomc.artifacts.distribution.id>
+    <jomc.artifacts.distribution.name>JOMC Site</jomc.artifacts.distribution.name>
+    <jomc.artifacts.distribution.base.url>dav:http://www.jomc.org/</jomc.artifacts.distribution.base.url>
+    <jomc.artifacts.distribution.url>${jomc.artifacts.distribution.base.url}/jomc-build/${jomc.base.version}</jomc.artifacts.distribution.url>
   </properties>
 </project>

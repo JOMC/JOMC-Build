@@ -39,7 +39,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>jdk15-jaxb21-signature</artifactId>
   <packaging>pom</packaging>
-  <name>JOMC Build :: Animal Sniffer Signatures :: JDK 1.5 - JAXB 2.1</name>
+  <name>JOMC Build ⁑ Animal Sniffer Signatures ⁑ JDK 1.5 - JAXB 2.1</name>
   <description>Java 1.5 signature with JAXB 2.1 extension excluding vendor specific implementation classes.</description>
   <build>
     <pluginManagement>

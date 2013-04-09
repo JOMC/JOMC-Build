@@ -40,7 +40,7 @@
   <groupId>org.jomc.build</groupId>
   <artifactId>jomc-build-signatures</artifactId>
   <packaging>pom</packaging>
-  <name>JOMC Build :: Animal Sniffer Signatures</name>
+  <name>JOMC Build ⁑ Animal Sniffer Signatures</name>
   <description>Animal Sniffer signatures parent project object model.</description>
   <build>
     <pluginManagement>
