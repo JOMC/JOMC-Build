@@ -36,7 +36,7 @@
   <artifactId>jomc-build</artifactId>
   <packaging>pom</packaging>
   <name>JOMC Build</name>
-  <version>1.9-SNAPSHOT</version>
+  <version>1.10-SNAPSHOT</version>
   <description>Object management and configuration build support.</description>
   <url>http://www.jomc.org/jomc-build/${project.version}</url>
   <inceptionYear>2005</inceptionYear>
@@ -688,7 +688,7 @@
               <requireMavenVersion>
                 <version>[3.0.4,3.0.6)</version>
               </requireMavenVersion>
-              <requireNoRepositories/>
+              <requireNoRepositories />
             </rules>
           </configuration>
         </plugin>
@@ -924,7 +924,7 @@
       <dependency>
         <groupId>org.jomc.build</groupId>
         <artifactId>jomc-build-resources</artifactId>
-        <version>1.9-SNAPSHOT</version>
+        <version>1.10-SNAPSHOT</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
