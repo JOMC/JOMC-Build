@@ -76,11 +76,28 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven-compiler-plugin.artifact.version}</version>
+          <configuration>
+            <!--
+            https://issues.apache.org/jira/browse/MPOM-63
+            -->
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
           <version>${maven-site-plugin.artifact.version}</version>
+          <dependencies>
+            <dependency>
+              <!--
+              https://issues.apache.org/jira/browse/MSITE-724
+              -->
+              <groupId>org.apache.maven</groupId>
+              <artifactId>maven-archiver</artifactId>
+              <version>2.5</version>
+            </dependency>
+          </dependencies>
           <configuration>
             <reportPlugins>
               <reportPlugin>
@@ -141,12 +158,12 @@
                       <report>license</report>
                     </reports>
                   </reportSet>
-                  <!-- reportSet> http://jira.codehaus.org/browse/MPIR-229
+                  <reportSet>
                     <id>default-modules</id>
                     <reports>
                       <report>modules</report>
                     </reports>
-                  </reportSet -->
+                  </reportSet>
                   <reportSet>
                     <id>default-plugins</id>
                     <reports>
@@ -199,7 +216,7 @@
                 <configuration>
                   <quiet>true</quiet>
                   <breakiterator>true</breakiterator>
-                  <top><![CDATA[<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-23230934-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>]]></top>
+                  <top><![CDATA[<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-23230934-1', 'jomc.org');ga('send', 'pageview');</script>]]></top>
                   <keywords>true</keywords>
                   <linksource>true</linksource>
                   <serialwarn>true</serialwarn>
@@ -211,6 +228,8 @@
                   <detectOfflineLinks>false</detectOfflineLinks>
                   <detectLinks>true</detectLinks>
                   <validateLinks>true</validateLinks>
+                  <minmemory>${maven.javadoc.minmemory}</minmemory>
+                  <maxmemory>${maven.javadoc.maxmemory}</maxmemory>
                   <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
                   <docletArtifact>
                     <groupId>org.umlgraph</groupId>
@@ -229,7 +248,10 @@
                       <version>${plexuscontainers.version}</version>
                     </tagletArtifact>
                   </tagletArtifacts>
-                  <additionalJOption>${maven.javadoc.additionalJOption}</additionalJOption>
+                  <additionalJOptions>
+                    <additionalJOption>-J-client</additionalJOption>
+                    <additionalJOption>-J-Dfile.encoding=${file.encoding}</additionalJOption>
+                  </additionalJOptions>
                   <additionalparam>-inferrel -inferdep -hide java.* -collpackages java.util.* -qualify -postfixpackage -nodefontsize 10 -nodefontpackagesize 8 -outputencoding ${project.reporting.outputEncoding} -inferdepvis protected</additionalparam>
                 </configuration>
               </reportPlugin>
@@ -251,7 +273,7 @@
                   </reportSet>
                 </reportSets>
               </reportPlugin>
-              <reportPlugin>
+              <!-- http://jira.codehaus.org/browse/MTAGLIST-59 reportPlugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>taglist-maven-plugin</artifactId>
                 <reportSets>
@@ -277,7 +299,7 @@
                     </tagClasses>
                   </tagListOptions>
                 </configuration>
-              </reportPlugin>
+              </reportPlugin -->
               <reportPlugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
@@ -357,31 +379,20 @@
                   </reportSet>
                 </reportSets>
                 <configuration>
-                  <jvmArgs>${mojo.findbugs.jvmArgs}</jvmArgs>
+                  <fork>false</fork>
                 </configuration>
               </reportPlugin>
               <reportPlugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>emma-maven-plugin</artifactId>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
                 <reportSets>
                   <reportSet>
-                    <id>default-emma</id>
+                    <id>default-report</id>
                     <reports>
-                      <report>emma</report>
+                      <report>report</report>
                     </reports>
                   </reportSet>
                 </reportSets>
-                <configuration>
-                  <!-- xml>false</xml See http://jira.codehaus.org/browse/MEMMA-19 -->
-                  <dataFiles>
-                    <dataFile>${project.build.directory}/coverage.ec</dataFile>
-                  </dataFiles>
-                  <sourcePaths>
-                    <sourcePath>${project.build.sourceDirectory}</sourcePath>
-                    <sourcePath>${xjcOutputDirectory}</sourcePath>
-                    <sourcePath>${javaccOutputDirectory}</sourcePath>
-                  </sourcePaths>
-                </configuration>
               </reportPlugin>
               <reportPlugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -488,17 +499,16 @@
           <artifactId>maven-jarsigner-plugin</artifactId>
           <version>${maven-jarsigner-plugin.artifact.version}</version>
           <configuration>
+            <excludeClassifiers>
+              <excludeClassifier>bin</excludeClassifier>
+            </excludeClassifiers>
+            <maxMemory>${maven.jarsigner.memory}</maxMemory>
             <arguments>
               <argument>-J-client</argument>
-              <argument>-J-Xms32m</argument>
-              <argument>-J-Xmx32m</argument>
-              <argument>-J-Xss2m</argument>
               <argument>-J-Dfile.encoding=${file.encoding}</argument>
               <argument>-J-Djsse.enableSNIExtension=false</argument>
               <argument>-digestalg</argument>
               <argument>SHA-256</argument>
-              <argument>-tsa</argument>
-              <argument>${jarsigner.tsa}</argument>
             </arguments>
           </configuration>
         </plugin>
@@ -512,8 +522,12 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${surefire.version}</version>
           <configuration>
+            <!--
+            Cannot set the <argLine> parameter here due to the JaCoCo plugin updating the value of that property after
+            interpolation.
             <argLine>${maven.surefire.argLine}</argLine>
-            <forkMode>once</forkMode>
+            -->
+            <forkCount>1C</forkCount>
             <redirectTestOutputToFile>true</redirectTestOutputToFile>
             <runOrder>random</runOrder>
             <workingDirectory>${project.build.directory}</workingDirectory>
@@ -540,7 +554,7 @@
           <configuration>
             <quiet>true</quiet>
             <breakiterator>true</breakiterator>
-            <top><![CDATA[<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-23230934-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>]]></top>
+            <top><![CDATA[<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-23230934-1', 'jomc.org');ga('send', 'pageview');</script>]]></top>
             <keywords>true</keywords>
             <linksource>true</linksource>
             <serialwarn>true</serialwarn>
@@ -552,6 +566,8 @@
             <detectOfflineLinks>false</detectOfflineLinks>
             <detectLinks>true</detectLinks>
             <validateLinks>true</validateLinks>
+            <minmemory>${maven.javadoc.minmemory}</minmemory>
+            <maxmemory>${maven.javadoc.maxmemory}</maxmemory>
             <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
             <docletArtifact>
               <groupId>org.umlgraph</groupId>
@@ -570,7 +586,10 @@
                 <version>${plexuscontainers.version}</version>
               </tagletArtifact>
             </tagletArtifacts>
-            <additionalJOption>${maven.javadoc.additionalJOption}</additionalJOption>
+            <additionalJOptions>
+              <additionalJOption>-J-client</additionalJOption>
+              <additionalJOption>-J-Dfile.encoding=${file.encoding}</additionalJOption>
+            </additionalJOptions>
             <additionalparam>-inferrel -inferdep -hide java.* -collpackages java.util.* -qualify -postfixpackage -nodefontsize 10 -nodefontpackagesize 8 -outputencoding ${project.reporting.outputEncoding} -inferdepvis protected</additionalparam>
             <archive>
               <index>true</index>
@@ -603,6 +622,10 @@
           <artifactId>maven-plugin-plugin</artifactId>
           <version>${plugintools.version}</version>
           <executions>
+            <execution>
+              <id>default-descriptor</id>
+              <phase>generate-resources</phase>
+            </execution>
             <execution>
               <id>default-helpmojo</id>
               <goals>
@@ -664,6 +687,13 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
           <version>${maven-enforcer-plugin.artifact.version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>extra-enforcer-rules</artifactId>
+              <version>1.0-beta-4</version>
+            </dependency>
+          </dependencies>
           <executions>
             <execution>
               <id>default-enforce</id>
@@ -686,16 +716,19 @@
                 <version>[1.7.0,)</version>
               </requireJavaVersion>
               <requireMavenVersion>
-                <version>[3.0.4,3.0.6)</version>
+                <version>[3.0.4],[3.0.5],[3.1.0-alpha-1],[3.1.0],[3.1.1],[3.2.1],[3.2.2],[3.2.3],[3.2.5],[3.3.1],[3.3.3],[3.3.9]</version>
               </requireMavenVersion>
-              <requireNoRepositories />
+              <requireNoRepositories/>
+              <enforceBytecodeVersion>
+                <maxJdkVersion>${maven.compiler.target}</maxJdkVersion>
+              </enforceBytecodeVersion>
             </rules>
           </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>${maven-project-info-reports-plugin.artifact.version}</version> <!-- See http://jira.codehaus.org/browse/MPIR-238 -->
+          <version>${maven-project-info-reports-plugin.artifact.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -713,7 +746,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>${maven-checkstyle-plugin.artifact.version}</version> <!-- See http://sourceforge.net/tracker/?func=detail&aid=3486876&group_id=29721&atid=397078 -->
+          <version>${maven-checkstyle-plugin.artifact.version}</version>
           <configuration>
             <configLocation>org/jomc/build/resources/checkstyle.xml</configLocation>
             <enableRulesSummary>false</enableRulesSummary>
@@ -797,26 +830,23 @@
           <artifactId>findbugs-maven-plugin</artifactId>
           <version>${findbugs-maven-plugin.artifact.version}</version>
           <configuration>
-            <jvmArgs>${mojo.findbugs.jvmArgs}</jvmArgs>
+            <fork>false</fork>
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>emma-maven-plugin</artifactId>
-          <version>${emma-maven-plugin.artifact.version}</version>
-          <configuration>
-            <!-- xml>false</xml See http://jira.codehaus.org/browse/MEMMA-19 -->
-            <dataFiles>
-              <dataFile>${project.build.directory}/coverage.ec</dataFile>
-            </dataFiles>
-            <sourcePaths>
-              <sourcePath>${project.build.sourceDirectory}</sourcePath>
-              <sourcePath>${xjcOutputDirectory}</sourcePath>
-              <sourcePath>${javaccOutputDirectory}</sourcePath>
-            </sourcePaths>
-          </configuration>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco-maven-plugin.artifact.version}</version>
+          <executions>
+            <execution>
+              <id>default-prepare-agent</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
-        <plugin>
+        <!-- http://jira.codehaus.org/browse/MTAGLIST-59 plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>taglist-maven-plugin</artifactId>
           <version>${taglist-maven-plugin.artifact.version}</version>
@@ -835,7 +865,7 @@
               </tagClasses>
             </tagListOptions>
           </configuration>
-        </plugin>
+        </plugin -->
         <plugin>
           <groupId>org.codehaus.plexus</groupId>
           <artifactId>plexus-component-metadata</artifactId>
@@ -913,6 +943,10 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>animal-sniffer-maven-plugin</artifactId>
       </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
     </plugins>
   </build>
   <modules>
@@ -932,12 +966,12 @@
     <repository>
       <id>sonatype-nexus-staging</id>
       <name>Sonatype Nexus Release Repository</name>
-      <url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+      <url>dav:https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
     </repository>
     <snapshotRepository>
       <id>sonatype-nexus-snapshots</id>
       <name>Sonatype Nexus Snapshots</name>
-      <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+      <url>dav:https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
     <site>
       <id>${jomc.artifacts.distribution.id}</id>
@@ -959,27 +993,23 @@
           <plugins>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-deploy-plugin</artifactId>
+              <dependencies>
+                <dependency>
+                  <groupId>org.apache.maven.wagon</groupId>
+                  <artifactId>wagon-webdav-jackrabbit</artifactId>
+                  <version>2.10</version>
+                </dependency>
+              </dependencies>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-site-plugin</artifactId>
               <dependencies>
                 <dependency>
                   <groupId>org.apache.maven.wagon</groupId>
-                  <artifactId>wagon-ssh</artifactId>
-                  <version>${wagon.version}</version>
-                </dependency>
-                <dependency>
-                  <groupId>org.apache.maven.wagon</groupId>
                   <artifactId>wagon-webdav-jackrabbit</artifactId>
-                  <version>${wagon.version}</version>
-                </dependency>
-                <dependency>
-                  <groupId>org.slf4j</groupId>
-                  <artifactId>jcl-over-slf4j</artifactId>
-                  <version>${slf4j.version}</version>
-                </dependency>
-                <dependency>
-                  <groupId>org.slf4j</groupId>
-                  <artifactId>slf4j-simple</artifactId>
-                  <version>${slf4j.version}</version>
+                  <version>2.10</version>
                 </dependency>
               </dependencies>
               <executions>
@@ -998,23 +1028,8 @@
               <dependencies>
                 <dependency>
                   <groupId>org.apache.maven.wagon</groupId>
-                  <artifactId>wagon-ssh</artifactId>
-                  <version>${wagon.version}</version>
-                </dependency>
-                <dependency>
-                  <groupId>org.apache.maven.wagon</groupId>
                   <artifactId>wagon-webdav-jackrabbit</artifactId>
-                  <version>${wagon.version}</version>
-                </dependency>
-                <dependency>
-                  <groupId>org.slf4j</groupId>
-                  <artifactId>jcl-over-slf4j</artifactId>
-                  <version>${slf4j.version}</version>
-                </dependency>
-                <dependency>
-                  <groupId>org.slf4j</groupId>
-                  <artifactId>slf4j-simple</artifactId>
-                  <version>${slf4j.version}</version>
+                  <version>1.0</version>
                 </dependency>
               </dependencies>
             </plugin>
@@ -1228,48 +1243,65 @@
   </profiles>
   <properties>
     <!-- Artifact versions. -->
-    <animal-sniffer.version>1.9</animal-sniffer.version>
-    <surefire.version>2.14</surefire.version>
-    <plugintools.version>2.9</plugintools.version> <!-- See http://jira.codehaus.org/browse/MNG-3762 -->
-    <plexuscontainers.version>1.5.5</plexuscontainers.version>
-    <wagon.version>2.3</wagon.version>
-    <slf4j.version>1.6.4</slf4j.version>
-    <umlgraph.version>5.6</umlgraph.version>
+    <animal-sniffer.version>1.15</animal-sniffer.version>
+    <surefire.version>2.19.1</surefire.version>
+    <!--
+    https://issues.apache.org/jira/browse/MNG-3762
+    -->
+    <plugintools.version>2.9</plugintools.version>
+    <plexuscontainers.version>1.6</plexuscontainers.version>
+    <umlgraph.version>5.6.6</umlgraph.version>
     <cc-xjc-plugin.version>2.0.1</cc-xjc-plugin.version>
-    <jaxb2-basics.version>0.6.3</jaxb2-basics.version>
+    <jaxb2-basics.version>0.11.0</jaxb2-basics.version>
+    <jomc.build.version>1.9</jomc.build.version>
     <!-- Plugin versions. -->
-    <maven-compiler-plugin.artifact.version>3.1</maven-compiler-plugin.artifact.version>
-    <maven-site-plugin.artifact.version>3.1</maven-site-plugin.artifact.version> <!-- See http://jira.codehaus.org/browse/MSITE-665 -->
-    <maven-resources-plugin.artifact.version>2.6</maven-resources-plugin.artifact.version>
-    <maven-release-plugin.artifact.version>2.4.1</maven-release-plugin.artifact.version>
-    <maven-jar-plugin.artifact.version>2.4</maven-jar-plugin.artifact.version>
-    <maven-gpg-plugin.artifact.version>1.4</maven-gpg-plugin.artifact.version>
-    <maven-jarsigner-plugin.artifact.version>1.2</maven-jarsigner-plugin.artifact.version>
-    <maven-remote-resources-plugin.artifact.version>1.4</maven-remote-resources-plugin.artifact.version>
-    <maven-javadoc-plugin.artifact.version>2.9</maven-javadoc-plugin.artifact.version>
-    <maven-clean-plugin.artifact.version>2.5</maven-clean-plugin.artifact.version>
-    <maven-deploy-plugin.artifact.version>2.7</maven-deploy-plugin.artifact.version>
-    <maven-dependency-plugin.artifact.version>2.7</maven-dependency-plugin.artifact.version>
-    <maven-install-plugin.artifact.version>2.4</maven-install-plugin.artifact.version>
-    <maven-source-plugin.artifact.version>2.2.1</maven-source-plugin.artifact.version>
-    <maven-scm-plugin.artifact.version>1.8.1</maven-scm-plugin.artifact.version>
-    <maven-changes-plugin.artifact.version>2.9</maven-changes-plugin.artifact.version>
-    <maven-enforcer-plugin.artifact.version>1.2</maven-enforcer-plugin.artifact.version>
-    <maven-project-info-reports-plugin.artifact.version>2.6</maven-project-info-reports-plugin.artifact.version>
-    <maven-jxr-plugin.artifact.version>2.3</maven-jxr-plugin.artifact.version>
-    <maven-pmd-plugin.artifact.version>3.0.1</maven-pmd-plugin.artifact.version>
-    <maven-checkstyle-plugin.artifact.version>2.9.1</maven-checkstyle-plugin.artifact.version>
-    <wagon-maven-plugin.artifact.version>1.0-beta-4</wagon-maven-plugin.artifact.version>
+    <maven-compiler-plugin.artifact.version>3.5.1</maven-compiler-plugin.artifact.version>
+    <!--
+    https://issues.apache.org/jira/browse/MSITE-724
+    https://issues.apache.org/jira/browse/MSITE-769
+    -->
+    <maven-site-plugin.artifact.version>3.4</maven-site-plugin.artifact.version>
+    <maven-resources-plugin.artifact.version>2.7</maven-resources-plugin.artifact.version>
+    <maven-release-plugin.artifact.version>2.5.3</maven-release-plugin.artifact.version>
+    <maven-jar-plugin.artifact.version>2.6</maven-jar-plugin.artifact.version>
+    <maven-gpg-plugin.artifact.version>1.6</maven-gpg-plugin.artifact.version>
+    <maven-jarsigner-plugin.artifact.version>1.4</maven-jarsigner-plugin.artifact.version>
+    <maven-remote-resources-plugin.artifact.version>1.5</maven-remote-resources-plugin.artifact.version>
+    <maven-javadoc-plugin.artifact.version>2.10.3</maven-javadoc-plugin.artifact.version>
+    <maven-clean-plugin.artifact.version>3.0.0</maven-clean-plugin.artifact.version>
+    <maven-deploy-plugin.artifact.version>2.8.2</maven-deploy-plugin.artifact.version>
+    <maven-dependency-plugin.artifact.version>2.10</maven-dependency-plugin.artifact.version>
+    <maven-install-plugin.artifact.version>2.5.2</maven-install-plugin.artifact.version>
+    <maven-source-plugin.artifact.version>3.0.0</maven-source-plugin.artifact.version>
+    <maven-scm-plugin.artifact.version>1.9.4</maven-scm-plugin.artifact.version>
+    <maven-changes-plugin.artifact.version>2.11</maven-changes-plugin.artifact.version>
+    <maven-enforcer-plugin.artifact.version>1.4.1</maven-enforcer-plugin.artifact.version>
+    <!--
+    https://issues.apache.org/jira/browse/MPIR-238
+    https://issues.apache.org/jira/browse/MPIR-322
+        The changes due to MPIR-322 are breaking the plugin for this project. Couldn't get worse.
+    -->
+    <maven-project-info-reports-plugin.artifact.version>2.7</maven-project-info-reports-plugin.artifact.version>
+    <maven-jxr-plugin.artifact.version>2.5</maven-jxr-plugin.artifact.version>
+    <maven-pmd-plugin.artifact.version>3.6</maven-pmd-plugin.artifact.version>
+    <!--
+    http://sourceforge.net/tracker/?func=detail&aid=3486876&group_id=29721&atid=397078
+    -->
+    <maven-checkstyle-plugin.artifact.version>2.17</maven-checkstyle-plugin.artifact.version>
+    <wagon-maven-plugin.artifact.version>1.0</wagon-maven-plugin.artifact.version>
     <javacc-maven-plugin.artifact.version>2.6</javacc-maven-plugin.artifact.version>
-    <build-helper-maven-plugin.artifact.version>1.8</build-helper-maven-plugin.artifact.version>
-    <xml-maven-plugin.artifact.version>1.0</xml-maven-plugin.artifact.version>
-    <clirr-maven-plugin.artifact.version>2.5</clirr-maven-plugin.artifact.version>
-    <findbugs-maven-plugin.artifact.version>2.5.2</findbugs-maven-plugin.artifact.version>
-    <emma-maven-plugin.artifact.version>1.0-alpha-3</emma-maven-plugin.artifact.version>
+    <build-helper-maven-plugin.artifact.version>1.10</build-helper-maven-plugin.artifact.version>
+    <xml-maven-plugin.artifact.version>1.0.1</xml-maven-plugin.artifact.version>
+    <clirr-maven-plugin.artifact.version>2.7</clirr-maven-plugin.artifact.version>
+    <findbugs-maven-plugin.artifact.version>3.0.3</findbugs-maven-plugin.artifact.version>
+    <jacoco-maven-plugin.artifact.version>0.7.6.201602180812</jacoco-maven-plugin.artifact.version>
+    <!--
+    https://issues.apache.org/jira/browse/MTAGLIST-59
+    -->
     <taglist-maven-plugin.artifact.version>2.4</taglist-maven-plugin.artifact.version>
-    <maven-jaxb21-plugin.artifact.version>0.8.3</maven-jaxb21-plugin.artifact.version>
-    <maven-shade-plugin.artifact.version>2.0</maven-shade-plugin.artifact.version>
-    <maven-assembly-plugin.artifact.version>2.4</maven-assembly-plugin.artifact.version>
+    <maven-jaxb21-plugin.artifact.version>0.13.1</maven-jaxb21-plugin.artifact.version>
+    <maven-shade-plugin.artifact.version>2.4.3</maven-shade-plugin.artifact.version>
+    <maven-assembly-plugin.artifact.version>2.6</maven-assembly-plugin.artifact.version>
     <!-- Plugin parameters. -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -1279,16 +1311,23 @@
     <remoteResourcesOutputDirectory>${project.build.directory}/maven-shared-archive-resources</remoteResourcesOutputDirectory>
     <assembly.useJvmChmod>true</assembly.useJvmChmod>
     <dependency.useJvmChmod>true</dependency.useJvmChmod>
+    <installAtEnd>true</installAtEnd>
+    <deployAtEnd>true</deployAtEnd>
     <maven.compiler.optimize>true</maven.compiler.optimize>
     <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
     <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
     <maven.compiler.source>1.5</maven.compiler.source>
     <maven.compiler.target>1.5</maven.compiler.target>
-    <maven.javadoc.additionalJOption>-J-client -J-Xms32m -J-Xmx32m -J-Xss2m -J-Dfile.encoding=${file.encoding}</maven.javadoc.additionalJOption>
+    <maven.compiler.useIncrementalCompilation>false</maven.compiler.useIncrementalCompilation>
+    <maven.jarsigner.memory>32m</maven.jarsigner.memory>
+    <maven.javadoc.memory>32m</maven.javadoc.memory>
+    <maven.javadoc.minmemory>${maven.javadoc.memory}</maven.javadoc.minmemory>
+    <maven.javadoc.maxmemory>${maven.javadoc.memory}</maven.javadoc.maxmemory>
     <maven.surefire.argLine>-client -Xms32m -Xmx32m -Xss2m -Dfile.encoding=${file.encoding}</maven.surefire.argLine>
-    <mojo.findbugs.jvmArgs>-client -Xms32m -Xmx32m -Xss2m -Dfile.encoding=${file.encoding}</mojo.findbugs.jvmArgs>
+    <!-- Updated by JaCoCo plugin. Potentionally conflicts with other plugins using that same property. -->
+    <argLine>${maven.surefire.argLine}</argLine>
     <!-- Parent -->
-    <jomc.base.version>1.9</jomc.base.version>
+    <jomc.base.version>1.10</jomc.base.version>
     <jomc.frs.distribution.id>frs.jomc.org</jomc.frs.distribution.id>
     <jomc.frs.distribution.url>dav:http://frs.jomc.org/</jomc.frs.distribution.url>
     <jomc.xml.distribution.id>xml.jomc.org</jomc.xml.distribution.id>

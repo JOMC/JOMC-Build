@@ -12,31 +12,51 @@
 
   ${project.description}
 #end
+#if($project.licenses && !$project.licenses.empty)
+
+  Lizenzen
+#foreach($license in $project.licenses)
+
+#if($license.name)
+    Name ........................ : $license.name
+#else
+    Name ........................ : Nicht verfügbar.
+#end
+#if($license.url)
+    URL ......................... : $license.url
+#else
+    URL ......................... : Nicht verfügbar.
+#end
+#if($license.comments)
+    Kommentar ................... : $license.comments
+#end
+#end
+#end
 #if($project.developers && !$project.developers.empty)
 
   Entwickler
 #foreach($developer in $project.developers)
 
 #if($developer.id)
-    Bezeichner ............. : $developer.id
+    Bezeichner .................. : $developer.id
 #end
 #if($developer.name)
-    Name ................... : $developer.name
+    Name ........................ : $developer.name
 #end
 #if($developer.email)
-    E-Mail ................. : $developer.email
+    E-Mail ...................... : $developer.email
 #end
 #if($developer.url)
-    URL .................... : $developer.url
+    URL ......................... : $developer.url
 #end
 #if($developer.organization)
-    Organisation ........... : $developer.organization
+    Organisation ................ : $developer.organization
 #end
 #if($developer.organizationUrl)
-    URL der Organisation ... : $developer.organizationUrl
+    URL der Organisation ........ : $developer.organizationUrl
 #end
 #if($developer.timezone)
-    Zeitzone ............... : $developer.timezone
+    Zeitzone .................... : $developer.timezone
 #end
 #end
 #end
@@ -46,31 +66,39 @@
 #foreach($contributor in $project.contributors)
 
 #if($contributor.name)
-    Name ................... : $contributor.name
+    Name ........................ : $contributor.name
 #end
 #if($contributor.email)
-    E-Mail ................. : $contributor.email
+    E-Mail ...................... : $contributor.email
 #end
 #if($contributor.url)
-    URL .................... : $contributor.url
+    URL ......................... : $contributor.url
 #end
 #if($contributor.organization)
-    Organisation ........... : $contributor.organization
+    Organisation ................ : $contributor.organization
 #end
 #if($contributor.organizationUrl)
-    URL der Organisation ... : $contributor.organizationUrl
+    URL der Organisation ........ : $contributor.organizationUrl
 #end
 #if($contributor.timezone)
-    Zeitzone ............... : $contributor.timezone
+    Zeitzone .................... : $contributor.timezone
 #end
 #end
 #end
-#if($project.issueManagement && $project.issueManagement.url)
+#if($project.issueManagement)
 
   Problemverwaltung
 
-    System ............. : $project.issueManagement.system
-    URL ................ : $project.issueManagement.url
+#if($project.issueManagement.system)
+    System ...................... : $project.issueManagement.system
+#else
+    System ...................... : Nicht verfügbar.
+#end
+#if($project.issueManagement.url)
+    URL ......................... : $project.issueManagement.url
+#else
+    URL ......................... : Nicht verfügbar.
+#end
 #end
 #if($project.mailingLists && !$project.mailingLists.empty)
 
@@ -78,19 +106,19 @@
 #foreach($list in $project.mailingLists)
 
 #if($list.name)
-    Name ................ : $list.name
+    Name ........................ : $list.name
 #end
 #if($list.subscribe)
-    Eintragung .......... : $list.subscribe
+    Eintragung .................. : $list.subscribe
 #end
 #if($list.unsubscribe)
-    Austragung .......... : $list.unsubscribe
+    Austragung .................. : $list.unsubscribe
 #end
 #if($list.post)
-    Adresse ............. : $list.post
+    Adresse ..................... : $list.post
 #end
 #if($list.archive)
-    Archiv .............. : $list.archive
+    Archiv ...................... : $list.archive
 #end
 #end
 #end
@@ -100,12 +128,18 @@
 
 #if($project.scm.connection)
     Verbindung .................. : ${project.scm.connection}
+#else
+    Verbindung .................. : Nicht verfügbar.
 #end
-#if($project.scm.developerConnection)
+#if($project.scm.developerConnection && !$project.scm.developerConnection.contains("schulte.it"))
     Verbindung für Entwickler ... : ${project.scm.developerConnection}
+#else
+    Verbindung für Entwickler ... : Nicht verfügbar.
 #end
 #if($project.scm.url)
     SCM URL ..................... : ${project.scm.url}
+#else
+    SCM URL ..................... : Nicht verfügbar.
 #end
 #end
 #if($projectsSortedByOrganization && !$projectsSortedByOrganization.isEmpty())
@@ -114,46 +148,46 @@
 #foreach ( $organization in $projectsSortedByOrganization.keySet() )
 #foreach ( $dependency in $projectsSortedByOrganization.get( $organization ) )
 
-    Name ................... : $dependency.name
-    Artefakt ............... : $dependency.artifact
+    Name ........................ : $dependency.name
+    Artefakt .................... : $dependency.artifact
 #if($dependency.url)
-    URL .................... : $dependency.url
+    URL ......................... : $dependency.url
 #else
-    URL .................,,, : Nicht verfügbar.
+    URL ......................... : Nicht verfügbar.
 #end
 #if(!$organization.getName().equals("an unknown organization"))
-    Organisation ........... : $organization.name
+    Organisation ................ : $organization.name
 #else
-    Organisation ........... : Nicht verfügbar.
+    Organisation ................ : Nicht verfügbar.
 #end
 #if($organization.url)
-    URL der Organisation ... : $organization.url
+    URL der Organisation ........ : $organization.url
 #else
-    URL der Organisation ... : Nicht verfügbar.
+    URL der Organisation ........ : Nicht verfügbar.
 #end
 #if($dependency.licenses && !$dependency.licenses.empty)
 #foreach($license in $dependency.licenses)
 #if($license.name)
-    Lizenz ................. : $license.name
+    Lizenz ...................... : $license.name
 #else
-    Lizenz ................. : Nicht verfügbar.
+    Lizenz ...................... : Nicht verfügbar.
 #end
 #if($license.url && ( $license.url.toLowerCase().startsWith("http") || $license.url.toLowerCase().startsWith("ftp") ) )
-    Lizenz URL ............. : $license.url
+    Lizenz URL .................. : $license.url
 #else
-    Lizenz URL ............. : Nicht verfügbar.
+    Lizenz URL .................. : Nicht verfügbar.
 #end
 #if($license.comments)
-    Lizenz Kommentare ...... : $license.comments
+    Lizenz Kommentare ........... : $license.comments
 #end
 #end
 #else
-    Lizenz ................. : Nicht verfügbar.
+    Lizenz ...................... : Nicht verfügbar.
 #end
 #if($dependency.description)
-    Beschreibung ........... : $dependency.description
+    Beschreibung ................ : $dependency.description
 #else
-    Beschreibung ........... : Nicht verfügbar.
+    Beschreibung ................ : Nicht verfügbar.
 #end
 #end
 #end

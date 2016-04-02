@@ -1,10 +1,13 @@
 
-#if($with-organization-copyright && $project.getOrganization())
-    Copyright (C) $project.getOrganization().getName(), ${projectTimespan}
+#if($with-organization-copyright && $project.getOrganization() && $project.getOrganization().getName())
+    Copyright (C) ${projectTimespan} $project.getOrganization().getName()
 #end
 #if($with-developer-copyright && $project.getDevelopers() && !$project.getDevelopers().isEmpty())
 #foreach($developer in $project.getDevelopers())
-    Copyright (C) $developer.getName(), ${projectTimespan}
+#if($developer.getOrganization() || $developer.getName() || $developer.getEmail())
+    Copyright (C) ${projectTimespan}#if($developer.getOrganization()) $developer.getOrganization()#end#if($developer.getName()) $developer.getName()#end#if($developer.getEmail()) #if(!$developer.getEmail().contains('<'))<#end${developer.getEmail()}#if(!$developer.getEmail().contains('>'))>#end#end
+
+#end
 #end
 #end
     All rights reserved.

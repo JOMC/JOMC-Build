@@ -74,7 +74,6 @@
     </module>
     <module name="MissingSwitchDefault"/>
     <module name="ModifiedControlVariable"/>
-    <module name="RedundantThrows"/>
     <module name="SimplifyBooleanExpression"/>
     <module name="SimplifyBooleanReturn"/>
     <module name="StringLiteralEquality"/>
@@ -89,7 +88,6 @@
     <module name="IllegalCatch"/>
     <module name="IllegalThrows"/>
     <module name="PackageDeclaration"/>
-    <module name="JUnitTestCase"/>
     <module name="ParameterAssignment"/>
     <module name="ExplicitInitialization"/>
     <module name="DefaultComesLast"/>

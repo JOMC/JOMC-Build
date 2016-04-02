@@ -12,6 +12,26 @@
 
   ${project.description}
 #end
+#if($project.licenses && !$project.licenses.empty)
+
+  Licenses
+#foreach($license in $project.licenses)
+
+#if($license.name)
+    Name ............... : $license.name
+#else
+    Name ............... : Not available.
+#end
+#if($license.url)
+    URL ................ : $license.url
+#else
+    URL ................ : Not available.
+#end
+#if($license.comments)
+    Comments ........... : $license.comments
+#end
+#end
+#end
 #if($project.developers && !$project.developers.empty)
 
   Developers
@@ -65,12 +85,19 @@
 #end
 #end
 #end
-#if($project.issueManagement && $project.issueManagement.url)
+#if($project.issueManagement)
 
   Issue management
-
+#if($project.issueManagement.system)
     System ............. : $project.issueManagement.system
+#else
+    System ............. : Not available.
+#end
+#if($project.issueManagement.url)
     URL ................ : $project.issueManagement.url
+#else
+    URL ................ : Not available.
+#end
 #end
 #if($project.mailingLists && !$project.mailingLists.empty)
 
@@ -100,12 +127,18 @@
 
 #if($project.scm.connection)
     Connection ......... : ${project.scm.connection}
+#else
+    Connection ......... : Not available.
 #end
 #if($project.scm.developerConnection)
     Developer access ... : ${project.scm.developerConnection}
+#else
+    Developer access ... : Not available.
 #end
 #if($project.scm.url)
     URL ................ : ${project.scm.url}
+#else
+    URL ................ : Not available.
 #end
 #end
 #if($projectsSortedByOrganization && !$projectsSortedByOrganization.isEmpty())
